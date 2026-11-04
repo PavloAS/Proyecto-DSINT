@@ -1,0 +1,162 @@
+HECHOS INICIALES DE DSINT:
+
+
+MITO DE LA LIBERACION DE ANDROMEDA:
+
+Decisiones de Diseño. 
+De las dos versiones presentadas en el enunciado (Poseidón o Doris), hemos elegido a Poseidón como el dios ofendido por Casiopea. Esto lo que implica es dar a Poseidon la orden de liberar a la criatura Ceto, sin necesidad de hacer uso de Doris. 
+Hemos decidido que la obtención de las Sandalias Aladas sean proporcionadas por las Ninfas para otorgar la capacidad de vuelo a Perseo. De esta forma, se mantiene la idea del nacimiento de Pegaso en el momento en el que muere Medusa, su madre.
+Las capacidades, como volar o ser invisible, no se modelan como simples variables booleanas, sino como hechos que se instancian inicialmente con valor nulo para los personajes, y que se activan durante la ejecución cuando dicho personaje entra en posesión del objeto mágico que la otorga.
+
+
+(Personaje Dios)
+(Personaje Semidios)
+(Personaje Mortal)
+(Personaje Criatura)
+
+(semidios Perseo) --> Perseo es un semidios.
+
+(dios Zeus) --> Zeus es un Dios.
+(dios Poseidon) --> Poseidon es un dios.
+(dios Doris) --> Doris es un dios.
+(dios Hades) --> Hades es un dios.
+(dios Hermes) --> Hermes es un dios.
+(dios Atenea) --> Atenea es un dios. 
+(dios Grayas) --> Grayas es un dios.     Diosas menores, viejas que comparten ojo.
+(dios Hefesto) --> Hefesto es un dios.
+
+(mortal Danae) --> Danae es un mortal.
+(mortal Andromeda) --> Andromeda es un mortal. 
+(mortal Casiopea) --> Casiopea es un mortal. 
+
+(criatura Ceto) --> Ceto es una criatura marina.
+(criatura Ninfa) --> Ninfa son criaturas.
+(ninfa Nereida) --> Nereida es una ninfa.	Se aplica transitividad, Nereida es criatura.
+(criatura Medusa) --> Medusa es una criatura. 
+(criatura Pegaso) --> Pegaso es una criatura. //Crear cuando se mate a Medusa.
+
+(objeto ZurronMagico) --> ZurronMagico es un objeto.
+(objeto SandaliasAladas) --> SandaliasAladas es un objeto.
+(objeto CascoDeHades) --> CascoDeHades es un objeto. 
+(objeto HozDeAcero) --> HozDeAcero es un objeto.
+(objeto EscudoDeBronce) --> EscudoDeBronce es un objeto.
+(objeto EscudoEspejo) --> EscudoEspejo es un objeto. // Se crea cuando Hefesto pule el EscudoDeBronce.
+(objeto CabezaDeMedusa) --> CabezaDeMedusa es un objeto.
+(objeto OjoDeGrayas)
+
+
+(padre Zeus Perseo) --> Zeus es padre de Perseo.
+(madre Danae Perseo) --> Danae es madre de Perseo. 
+(madre Casiopea Andromeda) --> Casiopea es madre de Andromeda. 
+(madre Doris Nereidas) --> Doris es madre de Nereidas.
+(madre Medusa Pegaso) --> Medusa es madre de Pegaso. // Crear cuando se mate a Medusa
+
+
+
+(poseer Ninfa ZurronMagico) --> Ninfa tiene ZurronMagico.
+(poseer Ninfa SandaliasAladas) --> Hermes tiene SandaliasAladas.
+(poseer Hades CascoDeHades) --> Hades tiene CascoDeHades.
+(poseer Hermes HozDeAcero) --> Hermes tiene HozDeAcero.
+(poseer Atenea EscudoDeBronce) --> Atenea tiene EscudoDeBronce.
+(poseer Medusa CabezaDeMedusa) --> Medusa tiene CabezaDeMedusa.
+(poseer Grayas OjoDeGrayas) --> Grayas tiene OjoDeGrayas.
+
+
+(estadoInicial Perseo vivo) (estadoInicial Perseo libre)
+(estadoInicial Zeus vivo) (estadoInicial Zeus libre)
+(estadoInicial Danae vivo) (estadoInicial Danae libre)
+(estadoInicial Andromeda vivo) (estadoInicial Andromeda libre)
+(estadoInicial Ceto vivo) (estadoInicial Ceto preso)
+(estadoInicial Poseidon vivo) (estadoInicial Poseidon libre)
+(estadoInicial Casiopea vivo) (estadoInicial Casiopea libre)
+(estadoInicial Doris vivo) (estadoInicial Doris libre)
+(estadoInicial Ninfa vivo) (estadoInicial Ninfa libre)
+(estadoInicial Nereida vivo) (estadoInicial Nereida libre)
+(estadoInicial Medusa vivo) (estadoInicial Medusa libre)
+(estadoInicial Hades vivo) (estadoInicial Hades libre)
+(estadoInicial Hermes vivo) (estadoInicial Hermes libre)
+(estadoInicial Atenea vivo) (estadoInicial Atenea libre)
+(estadoInicial Grayas vivo) (estadoInicial Grayas libre)
+(estadoInicial Hefesto vivo) (estadoInicial Hefesto libre)
+
+
+
+(capacidad Perseo Nada) --> Perseo no puede volar ni invisible ni nada.
+(capacidad Andromeda Nada) 
+(tieneFavor Perseo Nada) --> Perseo no tiene favor de nadie para hacer nada.
+
+
+
+
+MITO DEL LABERINTO DE CRETA:
+
+Decisiones de Diseño: (Aquí tenemos que invertarnos nosotros las condiciones para que se den las acciones)
+
+
+(semidios Heracles)
+(mortal Minos)
+(mortal Icaro)
+(mortal Dedalo)
+(mortal Ariadna)
+(mortal Teseo)
+(criatura Minotauro)
+
+
+(objeto HiloDeAriadna)
+(objeto EspadaDeTeseo)
+(objeto CuernoDelMinotauro)
+(objeto CeraDeAbejas)
+(objeto PlumasDeAves)
+(objeto AlasDeIcaro) //Se crean cuando Dedalo las fabrica
+(objeto AlasDeDedalo) //Se crean cuando Dedalo las fabrica
+
+
+(padre Minos Ariadna)
+(padre Dedalo Icaro)	
+(padre Zeus Heracles)
+
+(poseer Ariadna HiloDeAriadna)
+(poseer Teseo EspadaDeTeseo)
+(poseer Minotauro CuernoDelMinotauro)
+
+(estadoInicial Minos vivo) (estadoInicial Minos libre)
+(estadoInicial Ariadna vivo) (estadoInicial Ariadna libre)
+(estadoInicial Teseo vivo) (estadoInicial Teseo libre)
+(estadoInicial Dedalo vivo) (estadoInicial Dedalo libre)
+(estadoInicial Icaro vivo) (estadoInicial Icaro libre)
+(estadoInicial Minotauro vivo) (estadoInicial Minotauro preso) // Encerrado en el laberinto.
+(estadoInicial Heracles vivo) (estadoInicial Heracles libre)
+
+(capacidad Teseo Nada)
+(capacidad Heracles FuerzaDescomunal)
+
+
+
+
+Diseño de las extensiones:
+En lugar de que solo Poseidon castigue a Casiopea, cualquier personaje que tenga el enojo de Minos es enviado al Laberinto y queda apresado por el Minotauro si no posee el HiloDeAriadna. Ademas, si un heroe intenta entrar al Laberinto sin el hilo, tambien es apresado por el Minotauro hasta que un segundo heroe (con el hilo) mate a la bestia y libere a todos sus prisioneros.
+
+Conectamos los dioses del primer mito con Creta haciendo que cualquier personaje con la capacidad Invisibilidad (obtenida mediante el CascoDeHades o el AnilloDeInvisibilidad) pueda robarle directamente el HiloDeAriadna a Ariadna, permitiendo que Perseo o Heracles entren al Laberinto sin depender de Teseo.
+
+Al escapar del Laberinto, Icaro muere y deja caer las AlasDeIcaroRotas. Cualquier heroe que reuna CeraDeAbejas y PlumasDeAves puede reparar las alas para obtener AlasDeIcaro y ganar la capacidad de Vuelo.
+
+El CuernoDelMinotauro funciona como arma equivalente a la HozDeAcero para matar a Medusa. Por su parte, Heracles parte con el favor de su padre Zeus y la capacidad FuerzaDescomunal, lo que le permite abatir al Minotauro con sus propias manos sin necesitar la EspadaDeTeseo.
+
+Añadimos CabezaDelMinotauro y CabezaDeCeto al inventario inicial de cada criatura para que, al aplicar la regla general de botín al matar, el héroe vencedor coleccione las cabezas.
+
+
+(objeto AlasDeIcaroRotas) --> //Se crean cuando Icaro muere
+(objeto CabezaDeCeto) 
+(objeto CabezaDelMinotauro) 
+(objeto BridaDeOro) --> BridaDeOro es un objeto.
+(objeto AnilloDeInvisibilidad) --> AnilloDeInvisibilidad es un objeto.
+(objeto EspejoDeMano) --> EspejoDeMano es un objeto.
+(objeto ConjuroDeVuelo) --> ConjuroDeVuelo es un objeto.
+
+(poseer Ceto CabezaDeCeto)
+(poseer Minotauro CabezaDelMinotauro) 
+(poseer Hefesto BridaDeOro) --> Hefesto tiene BridaDeOro.
+
+(tieneFavor Heracles Zeus) --> Heracles comienza con el favor de su padre Zeus.
+
+
