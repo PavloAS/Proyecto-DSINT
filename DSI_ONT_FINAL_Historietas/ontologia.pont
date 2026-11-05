@@ -1,0 +1,109 @@
+; Thu Nov 05 16:59:43 CET 2026
+; 
+;+ (version "3.4.8")
+;+ (build "Build 629")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract))
+
+(defclass Ser
+	(is-a USER)
+	(role abstract))
+
+(defclass Personaje
+	(is-a Ser)
+	(role abstract))
+
+(defclass Dios
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Semidios
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Humano
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Heroe
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Criatura
+	(is-a Ser)
+	(role abstract))
+
+(defclass Monstruo
+	(is-a Criatura)
+	(role concrete))
+
+(defclass AnimalMitologico
+	(is-a Criatura)
+	(role concrete))
+
+(defclass Objeto
+	(is-a USER)
+	(role concrete))
+
+(defclass Arma
+	(is-a Objeto)
+	(role concrete))
+
+(defclass Proteccion
+	(is-a Objeto)
+	(role concrete))
+
+(defclass ObjetoMagico
+	(is-a Objeto)
+	(role concrete))
+
+(defclass Herramienta
+	(is-a Objeto)
+	(role concrete))
+
+(defclass Trofeo
+	(is-a Objeto)
+	(role concrete))
+
+(defclass CapacIdad
+	(is-a USER)
+	(role abstract))
+
+(defclass Reflejo
+	(is-a CapacIdad)
+	(role concrete))
+
+(defclass Fuerza
+	(is-a CapacIdad)
+	(role concrete))
+
+(defclass Vuelo
+	(is-a CapacIdad)
+	(role concrete))
+
+(defclass Petrificacion
+	(is-a CapacIdad)
+	(role concrete))
+
+(defclass Invisibilidad
+	(is-a CapacIdad)
+	(role concrete))
+
+(defclass Lugar
+	(is-a USER)
+	(role concrete))
+
+(defclass Accion
+	(is-a USER)
+	(role concrete))
+
+(defclass Mision
+	(is-a USER)
+	(role concrete))
+
+(defclass Grupo
+	(is-a USER)
+	(role concrete))
