@@ -1,4 +1,4 @@
-; Thu Nov 05 16:59:43 CET 2026
+; Sat Nov 07 11:12:33 CET 2026
 ; 
 ;+ (version "3.4.8")
 ;+ (build "Build 629")
@@ -6,104 +6,467 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(multislot otorgaCapacidad
+;+		(comment "Relaciona un objeto con la capacidad que le da al personaje que lo posee.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+;+		(inverse-slot esOtorgadaPor)
+		(create-accessor read-write))
+	(multislot esCapazDe
+;+		(comment "Capacidad que tiene activa un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot tieneCapacidad)
+		(create-accessor read-write))
+	(multislot requiereCapacidad
+;+		(comment "Capacidades que necesita tener el personaje para poder ejecutar la accion.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(single-slot seEncuentraEn
+		(type INSTANCE)
+;+		(allowed-classes Lugar)
+;+		(cardinality 0 1)
+;+		(inverse-slot albergaASer)
+		(create-accessor read-write))
+	(single-slot tienePadre
+;+		(comment "Indica quien es el padre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+;+		(inverse-slot esPadreDe)
+		(create-accessor read-write))
+	(multislot inverse_of_seEncuentraEn
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(multislot otorgaFavorA
+;+		(comment "Indica que dioses o personajes ayudan a un heroe para darle objetos.")
+		(type INSTANCE)
+;+		(allowed-classes Personaje)
+;+		(inverse-slot tieneFavorDe)
+		(create-accessor read-write))
+	(multislot perteneceAGrupo
+		(type INSTANCE)
+;+		(allowed-classes Grupo)
+;+		(inverse-slot tieneMiembro)
+		(create-accessor read-write))
+	(multislot inverse_of_esCapazDe
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(multislot objetoUsado
+;+		(comment "Objeto que se utiliza al realizar una accion.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+		(create-accessor read-write))
+	(multislot esOtorgadaPor
+;+		(comment "Relaciona un objeto con la capacidad que le da al personaje que lo posee.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+;+		(inverse-slot otorgaCapacidad)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot estaEnfadadoCon
+;+		(comment "Indica el ser con el que esta enfadado un personaje.")
+		(type INSTANCE)
+;+		(allowed-classes Personaje)
+;+		(inverse-slot tieneEnfadoDe)
+		(create-accessor read-write))
+	(single-slot pacienteAccion
+;+		(comment "Ser sobre el que recae la accion.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot esMadreDe
+;+		(comment "Indica quien es la madre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot tieneMadre)
+		(create-accessor read-write))
+	(multislot poseeObjeto
+;+		(comment "Objetos que tiene un ser en su poder.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+;+		(inverse-slot perteneceASer)
+		(create-accessor read-write))
+	(multislot estaPresoPor
+;+		(comment "Relacion para saber que ser tiene capturado a otro.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot tienePresoA)
+		(create-accessor read-write))
+	(multislot esPadreDe
+;+		(comment "Indica quien es el padre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot tienePadre)
+		(create-accessor read-write))
+	(multislot tieneMiembro
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot perteneceAGrupo)
+		(create-accessor read-write))
+	(multislot tieneCapacidad
+;+		(comment "Capacidad que tiene activa un ser.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+;+		(inverse-slot esCapazDe)
+		(create-accessor read-write))
+	(single-slot perteneceASer
+;+		(comment "Objetos que tiene un ser en su poder.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+;+		(inverse-slot poseeObjeto)
+		(create-accessor read-write))
+	(multislot albergaASer
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot seEncuentraEn)
+		(create-accessor read-write))
+	(multislot tieneFavorDe
+;+		(comment "Indica que dioses o personajes ayudan a un heroe para darle objetos.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot otorgaFavorA)
+		(create-accessor read-write))
+	(single-slot agenteAccion
+;+		(comment "Ser que realiza la accion.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot seConstruyeCon
+;+		(comment "Materiales u objetos que hacen falta para fabricareste objeto.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+		(create-accessor read-write))
+	(single-slot estadoLibertad
+;+		(comment "Indica si el ser esta libre o preso.")
+		(type SYMBOL)
+		(allowed-values libre preso)
+		(default libre)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot estadoVida
+;+		(comment "Indica si el ser esta vivo o muerto en ese momento.")
+		(type SYMBOL)
+		(allowed-values vivo muerto)
+		(default vivo)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot tieneEnfadoDe
+;+		(comment "Indica el ser con el que esta enfadado un personaje.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot estaEnfadadoCon)
+		(create-accessor read-write))
+	(single-slot estaRoto
+;+		(comment "Booleano para saber si un objeto esta roto y hace falta repararlo.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot tienePresoA
+;+		(comment "Relacion para saber que ser tiene capturado a otro.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(inverse-slot estaPresoPor)
+		(create-accessor read-write))
+	(single-slot tieneMadre
+;+		(comment "Indica quien es la madre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+;+		(inverse-slot esMadreDe)
+		(create-accessor read-write)))
 
-(defclass Ser
+(defclass Ser "Clase general para agrupar tanto a los personajes como a las criaturas que aparecen en los mitos. Todos comparten atributos basicos, como por ejemplo estar vivos o libres."
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(multislot tieneCapacidad
+;+		(comment "Capacidad que tiene activa un ser.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(multislot esMadreDe
+;+		(comment "Indica quien es la madre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(single-slot estadoLibertad
+;+		(comment "Indica si el ser esta libre o preso.")
+		(type SYMBOL)
+		(allowed-values libre preso)
+		(default libre)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot estadoVida
+;+		(comment "Indica si el ser esta vivo o muerto en ese momento.")
+		(type SYMBOL)
+		(allowed-values vivo muerto)
+		(default vivo)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot seEncuentraEn
+		(type INSTANCE)
+;+		(allowed-classes Lugar)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot poseeObjeto
+;+		(comment "Objetos que tiene un ser en su poder.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+		(create-accessor read-write))
+	(multislot estaPresoPor
+;+		(comment "Relacion para saber que ser tiene capturado a otro.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(multislot esPadreDe
+;+		(comment "Indica quien es el padre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(multislot inverse_of_esCapazDe
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(single-slot tienePadre
+;+		(comment "Indica quien es el padre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot estaEnfadadoCon
+;+		(comment "Indica el ser con el que esta enfadado un personaje.")
+		(type INSTANCE)
+;+		(allowed-classes Personaje)
+		(create-accessor read-write))
+	(multislot otorgaFavorA
+;+		(comment "Indica que dioses o personajes ayudan a un heroe para darle objetos.")
+		(type INSTANCE)
+;+		(allowed-classes Personaje)
+		(create-accessor read-write))
+	(multislot tienePresoA
+;+		(comment "Relacion para saber que ser tiene capturado a otro.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(multislot perteneceAGrupo
+		(type INSTANCE)
+;+		(allowed-classes Grupo)
+		(create-accessor read-write))
+	(single-slot tieneMadre
+;+		(comment "Indica quien es la madre de un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
-(defclass Personaje
+(defclass Personaje "Seres racionales que interactuan en la historia dando favores, enfadandose o realizando misiones."
+	(is-a Ser)
+	(role abstract)
+	(multislot tieneEnfadoDe
+;+		(comment "Indica el ser con el que esta enfadado un personaje.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(multislot tieneFavorDe
+;+		(comment "Indica que dioses o personajes ayudan a un heroe para darle objetos.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write)))
+
+(defclass Dios "Deidades de la mitologia griega. Pueden dar su favor a los heroes, enfadarse, entregar objetos...\nRef:\nhttps://es.wikipedia.org/wiki/Dioses_olimpicos"
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Semidios "Hijos de un dios y un mortal. Suelen ser los protagonistas de las misiones"
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Humano "Mortales normales que aparecen en las historias como victimas o ayudantes."
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Heroe "Personajes mortales que realizan las misiones principales aunque no sean semidioses."
+	(is-a Personaje)
+	(role concrete))
+
+(defclass Criatura "Seres mitologicos que no son humanos ni dioses. Pueden ser animales mitologicos o monstruos a los que hay que derrotar."
 	(is-a Ser)
 	(role abstract))
 
-(defclass Dios
-	(is-a Personaje)
-	(role concrete))
-
-(defclass Semidios
-	(is-a Personaje)
-	(role concrete))
-
-(defclass Humano
-	(is-a Personaje)
-	(role concrete))
-
-(defclass Heroe
-	(is-a Personaje)
-	(role concrete))
-
-(defclass Criatura
-	(is-a Ser)
-	(role abstract))
-
-(defclass Monstruo
+(defclass Monstruo "Criaturas peligrosas a las que los heroes tienen que matar en los mitos. Nos basamos en el guion de practicas y en el documento siguiente:\nhttps://es.wikipedia.org/wiki/Monstruos_de_la_mitologia_griega"
 	(is-a Criatura)
 	(role concrete))
 
-(defclass AnimalMitologico
+(defclass AnimalMitologico "Criaturas que son pacificas. Pueden audar o ser domadas por los heroes."
 	(is-a Criatura)
 	(role concrete))
 
-(defclass Objeto
+(defclass Objeto "Cualquier objeto, ya sea arma o materia,l que un ser puede tener en su inventario o conseguir en una mision."
 	(is-a USER)
-	(role concrete))
+	(role concrete)
+	(single-slot perteneceASer
+;+		(comment "Objetos que tiene un ser en su poder.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot otorgaCapacidad
+;+		(comment "Relaciona un objeto con la capacidad que le da al personaje que lo posee.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(single-slot estaRoto
+;+		(comment "Booleano para saber si un objeto esta roto y hace falta repararlo.")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
-(defclass Arma
+(defclass Arma "Objetos que sirven para atacar y matar criaturas."
 	(is-a Objeto)
 	(role concrete))
 
-(defclass Proteccion
+(defclass Proteccion "Objetevos que sirven como defensa, utilizados por los seres."
 	(is-a Objeto)
 	(role concrete))
 
-(defclass ObjetoMagico
+(defclass ObjetoMagico "Objetos especiales de los mitos que dan alguna capacidad al personaje que los lleva."
 	(is-a Objeto)
 	(role concrete))
 
-(defclass Herramienta
+(defclass Herramienta "Objetos o materiales que sirven para orientarse, para domar criaturas o para fabricar otras cosas."
 	(is-a Objeto)
 	(role concrete))
 
-(defclass Trofeo
+(defclass Trofeo "Partes de una criatura que se consiguen al detorrarlos."
 	(is-a Objeto)
 	(role concrete))
 
-(defclass CapacIdad
+(defclass CapacIdad "Habilidades especiales que necesita un personaje para superar partes del mito."
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(multislot esOtorgadaPor
+;+		(comment "Relaciona un objeto con la capacidad que le da al personaje que lo posee.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+		(create-accessor read-write))
+	(multislot esCapazDe
+;+		(comment "Capacidad que tiene activa un ser.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
-(defclass Reflejo
+(defclass Reflejo "Permite concretamente a mirar el reflejo de Medusa sin quedarse petrificado gracias al escudo espejo."
 	(is-a CapacIdad)
 	(role concrete))
 
-(defclass Fuerza
+(defclass Fuerza "Fuerza especial que tienen personajes concretos como Heracles para matar monstruos con sus propias manos sin usar armas."
 	(is-a CapacIdad)
 	(role concrete))
 
-(defclass Vuelo
+(defclass Vuelo "Permite al personaje que la tenga volar."
 	(is-a CapacIdad)
 	(role concrete))
 
-(defclass Petrificacion
+(defclass Petrificacion "Capacidad de petrificar a otros seres."
 	(is-a CapacIdad)
 	(role concrete))
 
-(defclass Invisibilidad
+(defclass Invisibilidad "Permite que el personaje que la tenga no sea visto. Sera util para diversas misiones."
 	(is-a CapacIdad)
 	(role concrete))
 
-(defclass Lugar
+(defclass Lugar "Sitios en los que ocurren las acciones."
 	(is-a USER)
-	(role concrete))
+	(role concrete)
+	(multislot albergaASer
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
-(defclass Accion
+(defclass Accion "Acciones que pueden hacer los personajes durante la historia, ya se matar, apresar,..."
 	(is-a USER)
-	(role concrete))
+	(role concrete)
+	(multislot objetoUsado
+;+		(comment "Objeto que se utiliza al realizar una accion.")
+		(type INSTANCE)
+;+		(allowed-classes Objeto)
+		(create-accessor read-write))
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot agenteAccion
+;+		(comment "Ser que realiza la accion.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot requiereCapacidad
+;+		(comment "Capacidades que necesita tener el personaje para poder ejecutar la accion.")
+		(type INSTANCE)
+;+		(allowed-classes CapacIdad)
+		(create-accessor read-write))
+	(single-slot pacienteAccion
+;+		(comment "Ser sobre el que recae la accion.")
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
-(defclass Mision
+(defclass Mision "Representa la pregunta u objetivo que se le plantea al sistema."
 	(is-a USER)
-	(role concrete))
+	(role concrete)
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
-(defclass Grupo
+(defclass Grupo "Colectivos de seres que actuan juntos en el mito, como las Ninfas, Grayas o las Nereidas."
 	(is-a USER)
-	(role concrete))
+	(role concrete)
+	(single-slot nombre
+;+		(comment "Nombre del ser, objeto o lugar.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot tieneMiembro
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(create-accessor read-write)))
