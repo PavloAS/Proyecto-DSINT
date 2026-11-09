@@ -1,7 +1,454 @@
-; Sat Nov 07 11:12:33 CET 2026
+; Mon Nov 09 20:13:56 CET 2026
 ; 
 ;+ (version "3.4.8")
 ;+ (build "Build 629")
+
+([ontologia_Class1] of  Dios
+
+	(esPadreDe
+		[ontologia_Class2]
+		[Heracles])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Zeus")
+	(otorgaFavorA [Heracles]))
+
+([ontologia_Class2] of  Semidios Heroe
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Perseo")
+	(perteneceAGrupo [Heroes])
+	(tieneMadre [Danae])
+	(tienePadre [ontologia_Class1]))
+
+([AlasDeDedalo] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "AlasDeDedalo")
+	(otorgaCapacidad [CapacidadVuelo]))
+
+([AlasDeIcaro] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "AlasDeIcaro")
+	(otorgaCapacidad [CapacidadVuelo]))
+
+([Andromeda] of  Humano
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Andromeda")
+	(seEncuentraEn [Etiopia])
+	(tieneMadre [Casiopea]))
+
+([AnilloDeInvisibilidad] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "AnilloDeInvisibilidad")
+	(otorgaCapacidad [CapacidadInvisibilidad]))
+
+([Ariadna] of  Humano
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Ariadna")
+	(poseeObjeto [HiloDeAriadna])
+	(seEncuentraEn [Creta])
+	(tienePadre [Minos]))
+
+([Atenea] of  Dios
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Atenea")
+	(poseeObjeto [EscudoDeBronce]))
+
+([BridaDeOro] of  Herramienta
+
+	(estaRoto FALSE)
+	(nombre "BridaDeOro")
+	(perteneceASer [Hefesto]))
+
+([CabezaDeCeto] of  Trofeo
+
+	(estaRoto FALSE)
+	(nombre "CabezaDeCeto"))
+
+([CabezaDelMinotauro] of  Trofeo
+
+	(estaRoto FALSE)
+	(nombre "CabezaDelMinotauro"))
+
+([CabezaDeMedusa] of  Trofeo
+
+	(estaRoto FALSE)
+	(nombre "CabezaDeMedusa")
+	(otorgaCapacidad [CapacidadPetrificacion]))
+
+([CapacidadInvisibilidad] of  Invisibilidad
+
+	(esOtorgadaPor
+		[CascoDeHades]
+		[AnilloDeInvisibilidad])
+	(nombre "CapacidadInvisibilidad"))
+
+([CapacidadPetrificacion] of  Petrificacion
+
+	(esCapazDe [Medusa])
+	(esOtorgadaPor [CabezaDeMedusa])
+	(nombre "CapacidadPetrificacion"))
+
+([CapacidadReflejo] of  Reflejo
+
+	(esOtorgadaPor
+		[EscudoEspejo]
+		[EspejoDeMano])
+	(nombre "CapacidadReflejo"))
+
+([CapacidadVuelo] of  Vuelo
+
+	(esCapazDe [Pegaso])
+	(esOtorgadaPor
+		[SandaliasAladas]
+		[AlasDeIcaro]
+		[AlasDeDedalo]
+		[ConjuroDeVuelo])
+	(nombre "CapacidadVuelo"))
+
+([CascoDeHades] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "CascoDeHades")
+	(otorgaCapacidad [CapacidadInvisibilidad])
+	(perteneceASer [Hades]))
+
+([Casiopea] of  Humano
+
+	(esMadreDe [Andromeda])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Casiopea")
+	(seEncuentraEn [Etiopia])
+	(tieneEnfadoDe [Poseidon]))
+
+([CeraDeAbejas] of  Objeto
+
+	(estaRoto FALSE)
+	(nombre "CeraDeAbejas"))
+
+([Ceto] of  Monstruo
+
+	(estadoLibertad preso)
+	(estadoVida vivo)
+	(estaPresoPor [Poseidon])
+	(nombre "Ceto"))
+
+([ConjuroDeVuelo] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "ConjuroDeVuelo")
+	(otorgaCapacidad [CapacidadVuelo]))
+
+([ConstruirAlas] of  Accion
+
+	(agenteAccion [Dedalo])
+	(nombre "ConstruirAlas")
+	(objetoUsado
+		[CeraDeAbejas]
+		[PlumasDeAves]))
+
+([Creta] of  Lugar
+
+	(albergaASer
+		[Minos]
+		[Ariadna]
+		[Dedalo]
+		[Icaro])
+	(nombre "Creta"))
+
+([CuernoDelMinotauro] of  Arma
+
+	(estaRoto FALSE)
+	(nombre "CuernoDelMinotauro")
+	(perteneceASer [Minotauro]))
+
+([Danae] of  Humano
+
+	(esMadreDe [ontologia_Class2])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Danae"))
+
+([Dedalo] of  Humano
+
+	(esPadreDe [Icaro])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Dedalo")
+	(seEncuentraEn [Creta]))
+
+([EntregarHilo] of  Accion
+
+	(agenteAccion [Ariadna])
+	(nombre "EntregarHilo")
+	(objetoUsado [HiloDeAriadna])
+	(pacienteAccion [Teseo]))
+
+([EscaparDelLaberinto] of  Mision
+
+	(nombre "EscaparDelLaberinto"))
+
+([EscudoDeBronce] of  Proteccion
+
+	(estaRoto FALSE)
+	(nombre "EscudoDeBronce")
+	(perteneceASer [Atenea]))
+
+([EscudoEspejo] of  Proteccion
+
+	(estaRoto FALSE)
+	(nombre "EscudoEspejo")
+	(otorgaCapacidad [CapacidadReflejo]))
+
+([EspadaDeTeseo] of  Arma
+
+	(estaRoto FALSE)
+	(nombre "EspadaDeTeseo")
+	(perteneceASer [Teseo]))
+
+([EspejoDeMano] of  Proteccion
+
+	(estaRoto FALSE)
+	(nombre "EspejoDeMano")
+	(otorgaCapacidad [CapacidadReflejo]))
+
+([Etiopia] of  Lugar
+
+	(albergaASer
+		[Andromeda]
+		[Casiopea])
+	(nombre "Etiopia"))
+
+([FuerzaDescomunal] of  Fuerza
+
+	(esCapazDe [Heracles])
+	(nombre "FuerzaDescomunal"))
+
+([Grayas] of  Grupo
+
+	(nombre "Grayas"))
+
+([Hades] of  Dios
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Hades")
+	(poseeObjeto [CascoDeHades]))
+
+([Hefesto] of  Dios
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Hefesto")
+	(poseeObjeto [BridaDeOro]))
+
+([Heracles] of  Semidios Heroe
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Heracles")
+	(perteneceAGrupo [Heroes])
+	(tieneCapacidad [FuerzaDescomunal])
+	(tieneFavorDe [ontologia_Class1])
+	(tienePadre [ontologia_Class1]))
+
+([Hermes] of  Dios
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Hermes")
+	(poseeObjeto [HozDeAcero]))
+
+([Heroes] of  Grupo
+
+	(nombre "Heroes")
+	(tieneMiembro
+		[ontologia_Class2]
+		[Heracles]
+		[Teseo]))
+
+([HiloDeAriadna] of  Herramienta
+
+	(estaRoto FALSE)
+	(nombre "HiloDeAriadna")
+	(perteneceASer [Ariadna]))
+
+([HozDeAcero] of  Arma
+
+	(estaRoto FALSE)
+	(nombre "HozDeAcero")
+	(perteneceASer [Hermes]))
+
+([Icaro] of  Humano
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Icaro")
+	(seEncuentraEn [Creta])
+	(tienePadre [Dedalo]))
+
+([Kraken] of  Monstruo
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Kraken"))
+
+([LaberintoCreta] of  Lugar
+
+	(albergaASer [Minotauro])
+	(nombre "LaberintoCreta"))
+
+([LiberarAndromeda] of  Accion
+
+	(agenteAccion [ontologia_Class2])
+	(nombre "LiberarAndromeda")
+	(pacienteAccion [Andromeda]))
+
+([LocalizarNinfas] of  Accion
+
+	(agenteAccion [ontologia_Class2])
+	(nombre "LocalizarNinfas")
+	(objetoUsado [OjoDeGrayas]))
+
+([MatarMedusa] of  Accion
+
+	(agenteAccion [ontologia_Class2])
+	(nombre "MatarMedusa")
+	(objetoUsado [HozDeAcero])
+	(pacienteAccion [Medusa])
+	(requiereCapacidad
+		[CapacidadVuelo]
+		[CapacidadInvisibilidad]
+		[CapacidadReflejo]))
+
+([MatarMinotauro] of  Accion
+
+	(agenteAccion [Teseo])
+	(nombre "MatarMinotauro")
+	(objetoUsado
+		[EspadaDeTeseo]
+		[HiloDeAriadna])
+	(pacienteAccion [Minotauro]))
+
+([Medusa] of  Monstruo
+
+	(esMadreDe [Pegaso])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Medusa")
+	(tieneCapacidad [CapacidadPetrificacion]))
+
+([Minos] of  Humano
+
+	(esPadreDe [Ariadna])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Minos")
+	(seEncuentraEn [Creta]))
+
+([Minotauro] of  Monstruo
+
+	(estadoLibertad preso)
+	(estadoVida vivo)
+	(nombre "Minotauro")
+	(poseeObjeto [CuernoDelMinotauro])
+	(seEncuentraEn [LaberintoCreta]))
+
+([Nereidas] of  Grupo
+
+	(nombre "Nereidas"))
+
+([Ninfas] of  Grupo
+
+	(nombre "Ninfas"))
+
+([ObtenerHoz] of  Accion
+
+	(agenteAccion [ontologia_Class2])
+	(nombre "ObtenerHoz")
+	(objetoUsado [HozDeAcero]))
+
+([OjoDeGrayas] of  Objeto
+
+	(estaRoto FALSE)
+	(nombre "OjoDeGrayas"))
+
+([Pegaso] of  AnimalMitologico
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Pegaso")
+	(tieneCapacidad [CapacidadVuelo])
+	(tieneMadre [Medusa]))
+
+([PetrificarCeto] of  Accion
+
+	(agenteAccion [ontologia_Class2])
+	(nombre "PetrificarCeto")
+	(objetoUsado [CabezaDeMedusa])
+	(pacienteAccion [Ceto])
+	(requiereCapacidad [CapacidadPetrificacion]))
+
+([PlumasDeAves] of  Objeto
+
+	(estaRoto FALSE)
+	(nombre "PlumasDeAves"))
+
+([Poseidon] of  Dios
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(estaEnfadadoCon [Casiopea])
+	(nombre "Poseidon")
+	(tienePresoA [Ceto]))
+
+([RepararAlas] of  Accion
+
+	(agenteAccion [Dedalo])
+	(nombre "RepararAlas")
+	(objetoUsado
+		[AlasDeIcaro]
+		[CeraDeAbejas]
+		[PlumasDeAves]))
+
+([RescatarAndromeda] of  Mision
+
+	(nombre "RescatarAndromeda"))
+
+([ReunirTresCabezas] of  Mision
+
+	(nombre "ReunirTresCabezas"))
+
+([SandaliasAladas] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "SandaliasAladas")
+	(otorgaCapacidad [CapacidadVuelo]))
+
+([Teseo] of  Humano Heroe
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Teseo")
+	(perteneceAGrupo [Heroes])
+	(poseeObjeto [EspadaDeTeseo]))
+
+([ZurronMagico] of  ObjetoMagico
+
+	(estaRoto FALSE)
+	(nombre "ZurronMagico"))
+
 
 ([ontologia_Class23] of  %3APAL-CONSTRAINT
 
