@@ -1,4 +1,4 @@
-; Mon Nov 09 20:13:56 CET 2026
+; Tue Nov 10 12:30:59 CET 2026
 ; 
 ;+ (version "3.4.8")
 ;+ (build "Build 629")
@@ -111,6 +111,7 @@
 	(multislot tieneMiembro
 		(type INSTANCE)
 ;+		(allowed-classes Ser)
+		(cardinality 1 ?VARIABLE)
 ;+		(inverse-slot perteneceAGrupo)
 		(create-accessor read-write))
 	(single-slot perteneceASer
@@ -319,6 +320,15 @@
 	(is-a Criatura)
 	(role concrete))
 
+(defclass Grupo "Colectivos de seres que actuan juntos en el mito, como las Ninfas, Grayas o las Nereidas."
+	(is-a Ser)
+	(role concrete)
+	(multislot tieneMiembro
+		(type INSTANCE)
+;+		(allowed-classes Ser)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
 (defclass Objeto "Cualquier objeto, ya sea arma o materia,l que un ser puede tener en su inventario o conseguir en una mision."
 	(is-a USER)
 	(role concrete)
@@ -456,17 +466,4 @@
 ;+		(comment "Nombre del ser, objeto o lugar.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Grupo "Colectivos de seres que actuan juntos en el mito, como las Ninfas, Grayas o las Nereidas."
-	(is-a USER)
-	(role concrete)
-	(single-slot nombre
-;+		(comment "Nombre del ser, objeto o lugar.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot tieneMiembro
-		(type INSTANCE)
-;+		(allowed-classes Ser)
 		(create-accessor read-write)))

@@ -1,26 +1,7 @@
-; Mon Nov 09 20:13:56 CET 2026
+; Tue Nov 10 12:30:59 CET 2026
 ; 
 ;+ (version "3.4.8")
 ;+ (build "Build 629")
-
-([ontologia_Class1] of  Dios
-
-	(esPadreDe
-		[ontologia_Class2]
-		[Heracles])
-	(estadoLibertad libre)
-	(estadoVida vivo)
-	(nombre "Zeus")
-	(otorgaFavorA [Heracles]))
-
-([ontologia_Class2] of  Semidios Heroe
-
-	(estadoLibertad libre)
-	(estadoVida vivo)
-	(nombre "Perseo")
-	(perteneceAGrupo [Heroes])
-	(tieneMadre [Danae])
-	(tienePadre [ontologia_Class1]))
 
 ([AlasDeDedalo] of  ObjetoMagico
 
@@ -111,8 +92,8 @@
 	(esCapazDe [Pegaso])
 	(esOtorgadaPor
 		[SandaliasAladas]
-		[AlasDeIcaro]
 		[AlasDeDedalo]
+		[AlasDeIcaro]
 		[ConjuroDeVuelo])
 	(nombre "CapacidadVuelo"))
 
@@ -175,7 +156,7 @@
 
 ([Danae] of  Humano
 
-	(esMadreDe [ontologia_Class2])
+	(esMadreDe [Perseo])
 	(estadoLibertad libre)
 	(estadoVida vivo)
 	(nombre "Danae"))
@@ -237,6 +218,8 @@
 
 ([Grayas] of  Grupo
 
+	(estadoLibertad libre)
+	(estadoVida vivo)
 	(nombre "Grayas"))
 
 ([Hades] of  Dios
@@ -260,8 +243,8 @@
 	(nombre "Heracles")
 	(perteneceAGrupo [Heroes])
 	(tieneCapacidad [FuerzaDescomunal])
-	(tieneFavorDe [ontologia_Class1])
-	(tienePadre [ontologia_Class1]))
+	(tieneFavorDe [Zeus])
+	(tienePadre [Zeus]))
 
 ([Hermes] of  Dios
 
@@ -272,10 +255,12 @@
 
 ([Heroes] of  Grupo
 
+	(estadoLibertad libre)
+	(estadoVida vivo)
 	(nombre "Heroes")
 	(tieneMiembro
-		[ontologia_Class2]
 		[Heracles]
+		[Perseo]
 		[Teseo]))
 
 ([HiloDeAriadna] of  Herramienta
@@ -311,19 +296,19 @@
 
 ([LiberarAndromeda] of  Accion
 
-	(agenteAccion [ontologia_Class2])
+	(agenteAccion [Perseo])
 	(nombre "LiberarAndromeda")
 	(pacienteAccion [Andromeda]))
 
 ([LocalizarNinfas] of  Accion
 
-	(agenteAccion [ontologia_Class2])
+	(agenteAccion [Perseo])
 	(nombre "LocalizarNinfas")
 	(objetoUsado [OjoDeGrayas]))
 
 ([MatarMedusa] of  Accion
 
-	(agenteAccion [ontologia_Class2])
+	(agenteAccion [Perseo])
 	(nombre "MatarMedusa")
 	(objetoUsado [HozDeAcero])
 	(pacienteAccion [Medusa])
@@ -367,15 +352,20 @@
 
 ([Nereidas] of  Grupo
 
+	(estadoLibertad libre)
+	(estadoVida vivo)
 	(nombre "Nereidas"))
 
 ([Ninfas] of  Grupo
 
-	(nombre "Ninfas"))
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Ninfas")
+	(poseeObjeto [SandaliasAladas]))
 
 ([ObtenerHoz] of  Accion
 
-	(agenteAccion [ontologia_Class2])
+	(agenteAccion [Perseo])
 	(nombre "ObtenerHoz")
 	(objetoUsado [HozDeAcero]))
 
@@ -392,9 +382,39 @@
 	(tieneCapacidad [CapacidadVuelo])
 	(tieneMadre [Medusa]))
 
+([Perseo] of  Semidios Heroe
+
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Perseo")
+	(perteneceAGrupo [Heroes])
+	(tieneMadre [Danae])
+	(tienePadre [Zeus]))
+
+([Perseo3] of  %3APAL-CONSTRAINT
+
+	(%3APAL-DESCRIPTION "Un ser no puede ser padre de si mismo.")
+	(%3APAL-NAME "NoAutoParentesco")
+	(%3APAL-RANGE "(defrange ?s :FRAME Ser)")
+	(%3APAL-STATEMENT "(forall ?s\n        (=> (own-slot-not-null tienePadre ?s)\n            (/= (tienePadre ?s) ?s)))"))
+
+([Perseo4] of  %3APAL-CONSTRAINT
+
+	(%3APAL-DESCRIPTION "Un ser no puede estar preso por si mismo")
+	(%3APAL-NAME "NoAutoCaptor")
+	(%3APAL-RANGE "(defrange ?s :FRAME Ser)")
+	(%3APAL-STATEMENT "(forall ?s\n        (not (tienePresoA ?s ?s)))"))
+
+([Perseo5] of  %3APAL-CONSTRAINT
+
+	(%3APAL-DESCRIPTION "Un personaje no puede tener el favor y el enojo de la misma entidad simultaneamente.")
+	(%3APAL-NAME "NoFavorYEnojoSimultaneo")
+	(%3APAL-RANGE "(defrange ?p1 :FRAME Personaje)\n(defrange ?p2 :FRAME Personaje)")
+	(%3APAL-STATEMENT "(forall ?p1\n        (forall ?p2\n                (=> (tieneFavorDe ?p1 ?p2)\n                    (not (tieneEnfadoDe ?p1 ?p2)))))"))
+
 ([PetrificarCeto] of  Accion
 
-	(agenteAccion [ontologia_Class2])
+	(agenteAccion [Perseo])
 	(nombre "PetrificarCeto")
 	(objetoUsado [CabezaDeMedusa])
 	(pacienteAccion [Ceto])
@@ -434,7 +454,8 @@
 
 	(estaRoto FALSE)
 	(nombre "SandaliasAladas")
-	(otorgaCapacidad [CapacidadVuelo]))
+	(otorgaCapacidad [CapacidadVuelo])
+	(perteneceASer [Ninfas]))
 
 ([Teseo] of  Humano Heroe
 
@@ -444,29 +465,17 @@
 	(perteneceAGrupo [Heroes])
 	(poseeObjeto [EspadaDeTeseo]))
 
+([Zeus] of  Dios
+
+	(esPadreDe
+		[Heracles]
+		[Perseo])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Zeus")
+	(otorgaFavorA [Heracles]))
+
 ([ZurronMagico] of  ObjetoMagico
 
 	(estaRoto FALSE)
 	(nombre "ZurronMagico"))
-
-
-([ontologia_Class23] of  %3APAL-CONSTRAINT
-
-	(%3APAL-DESCRIPTION "Un ser no puede ser padre de si mismo.")
-	(%3APAL-NAME "NoAutoParentesco")
-	(%3APAL-RANGE "(defrange ?s :FRAME Ser)")
-	(%3APAL-STATEMENT "(forall ?s\n        (=> (own-slot-not-null tienePadre ?s)\n            (/= (tienePadre ?s) ?s)))"))
-
-([ontologia_Class24] of  %3APAL-CONSTRAINT
-
-	(%3APAL-DESCRIPTION "Un ser no puede estar preso por si mismo")
-	(%3APAL-NAME "NoAutoCaptor")
-	(%3APAL-RANGE "(defrange ?s :FRAME Ser)")
-	(%3APAL-STATEMENT "(forall ?s\n        (not (tienePresoA ?s ?s)))"))
-
-([ontologia_Class25] of  %3APAL-CONSTRAINT
-
-	(%3APAL-DESCRIPTION "Un personaje no puede tener el favor y el enojo de la misma entidad simultaneamente.")
-	(%3APAL-NAME "NoFavorYEnojoSimultaneo")
-	(%3APAL-RANGE "(defrange ?p1 :FRAME Personaje)\n(defrange ?p2 :FRAME Personaje)")
-	(%3APAL-STATEMENT "(forall ?p1\n        (forall ?p2\n                (=> (tieneFavorDe ?p1 ?p2)\n                    (not (tieneEnfadoDe ?p1 ?p2)))))"))
