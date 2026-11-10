@@ -1,0 +1,9 @@
+﻿Ya he dejado las clases Java en el paquete modelo.
+
+Lo de Heroe lo he separado porque en Protégé Perseo puede ser Semidios y Heroe a la vez, pero Java no permite heredar de dos clases. Así guardamos sus datos en Semidios y usamos Heroe con el mismo nombre para indicar que también es héroe, sin tener su vida y demás repetidos.
+
+Los favores, enfados y capacidades van como hechos separados para que las reglas puedan trabajar directamente con ellos. También he añadido el tipo de acción y los datos de la misión para representar la pregunta del escenario.
+
+En Java he puesto Capacidad, aunque en Protégé sigue como CapacIdad. He mantenido estadoVida y estadoLibertad como están en la ontología actual.
+
+Por ahora están las clases; falta conectarlas con el parser y hacer las reglas y agendas.
