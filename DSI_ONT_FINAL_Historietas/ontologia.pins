@@ -1,4 +1,4 @@
-; Tue Nov 10 12:30:59 CET 2026
+; Tue Nov 10 12:44:52 CET 2026
 ; 
 ;+ (version "3.4.8")
 ;+ (build "Build 629")
@@ -244,6 +244,13 @@
 	(perteneceAGrupo [Heroes])
 	(tieneCapacidad [FuerzaDescomunal])
 	(tieneFavorDe [Zeus])
+	(tienePadre [Zeus])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Heracles")
+	(perteneceAGrupo [Heroes])
+	(tieneCapacidad [FuerzaDescomunal])
+	(tieneFavorDe [Zeus])
 	(tienePadre [Zeus]))
 
 ([Hermes] of  Dios
@@ -389,6 +396,12 @@
 	(nombre "Perseo")
 	(perteneceAGrupo [Heroes])
 	(tieneMadre [Danae])
+	(tienePadre [Zeus])
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Perseo")
+	(perteneceAGrupo [Heroes])
+	(tieneMadre [Danae])
 	(tienePadre [Zeus]))
 
 ([Perseo3] of  %3APAL-CONSTRAINT
@@ -459,6 +472,11 @@
 
 ([Teseo] of  Humano Heroe
 
+	(estadoLibertad libre)
+	(estadoVida vivo)
+	(nombre "Teseo")
+	(perteneceAGrupo [Heroes])
+	(poseeObjeto [EspadaDeTeseo])
 	(estadoLibertad libre)
 	(estadoVida vivo)
 	(nombre "Teseo")
