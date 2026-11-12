@@ -90,7 +90,7 @@ Las capacidades, como volar o ser invisible, no se modelan como simples variable
 
 MITO DEL LABERINTO DE CRETA:
 
-Decisiones de Diseño: (Aquí tenemos que invertarnos nosotros las condiciones para que se den las acciones)
+Decisiones de Diseño: (Aquí nos tenemos que inventar nosotros las condiciones para que se den las acciones)
 
 
 (semidios Heracles)

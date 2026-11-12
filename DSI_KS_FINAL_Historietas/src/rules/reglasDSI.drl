@@ -1,0 +1,283 @@
+package rules
+
+import modelo.*;
+
+rule "Inicializar hechos por defecto del Mito de Perseo"
+	salience 100
+	when
+	then
+		//Protagonista
+		Semidios perseo = new Semidios("Perseo");
+		perseo.setTienePadre("Zeus");
+		perseo.setTieneMadre("Danae");
+		insert(perseo);
+		insert(new Heroe("Perseo"));
+		
+		//Dioses
+		insert(new Dios("Zeus"));
+		insert(new Dios("Poseidon"));
+		insert(new Dios("Atenea"));
+		insert(new Dios("Hermes"));
+		insert(new Dios("Hades"));
+		insert(new Dios("Hefesto"));
+		
+		//Humanos
+		insert(new Humano("Danae"));
+		insert(new Humano("Casiopea"));
+		Humano andromeda = new Humano ("Andromeda");
+		andromeda.setTieneMadre("Casiopea");
+		insert(andromeda);
+		
+		//Grupos y Criaturas
+		insert(new Grupo("Grayas"));
+		insert(new Grupo("Ninfas"));
+		
+		Monstruo ceto = new Monstruo("Ceto");
+		ceto.setEstadoLibertad("preso");
+		insert(ceto);
+		insert(new EstaPresoPor("Ceto", "Poseidon"));
+		
+		insert(new Monstruo("Medusa"));
+		
+		//Objetos y poseedores
+		Proteccion escudo = new Proteccion("Escudo de Bronce");
+		escudo.setPerteneceASer("Atenea");
+		insert(escudo);
+		
+		Arma hoz = new Arma("Hoz de Acero");
+		hoz.setPerteneceASer("Hermes");
+		insert(hoz);
+		
+		ObjetoMagico casco = new ObjetoMagico("Casco de Hades");
+		casco.setPerteneceASer("Hades");
+		insert(casco);
+		
+		ObjetoMagico zurron = new ObjetoMagico("Zurron Magico");
+		zurron.setPerteneceASer("Ninfas");
+		insert(zurron);
+		
+		ObjetoMagico sandalias = new ObjetoMagico("Sandalias Aladas");
+		sandalias.setPerteneceASer("Ninfas");
+		insert(sandalias);
+		
+		ObjetoMagico ojo = new ObjetoMagico("Ojo de las Grayas");
+		ojo.setPerteneceASer("Grayas");
+		insert(ojo);
+		
+		Trofeo cabezaMedusa = new Trofeo("Cabeza de Medusa");
+		cabezaMedusa.setPerteneceASer("Medusa");
+		insert(cabezaMedusa);
+		
+		//Capacidades
+		insert(new OtorgaCapacidad("Sandalias Aladas", "Vuelo"));
+		insert(new OtorgaCapacidad("Casco de Hades", "Invisibilidad"));
+		insert(new OtorgaCapacidad("Escudo-Espejo", "Reflejo"));
+		insert(new OtorgaCapacidad("Cabeza de Medusa", "Petrificacion"));
+		
+		//Mision
+		insert(new Mision("Liberar a Andromeda", "Liberar", "Perseo", "Andromeda"));
+		
+		System.out.println("Mundo iniciado correctamente");
+end
+		
+rule "Inferir capacidad por posesion de objeto"
+	when
+		$obj : Objeto($nombreObj : nombre, $dueno : perteneceASer != null, estaRoto == false)
+		OtorgaCapacidad(objeto == $nombreObj, $cap : capacidad)
+	then
+		insertLogical(new TieneCapacidad($dueno, $cap));
+		System.out.println("[Capacidad] " + $dueno + " adquiere la capacidad de " + $cap + " gracias a " + $nombreObj);
+end		
+		
+	//Reglas del mito, encadenamiento hacia delante 	
+		
+rule "Poseidon libera a Ceto por enfado con Casiopea"
+    when
+        TieneEnfadoDe(personaje == "Casiopea", ser == "Poseidon")
+        $ceto : Monstruo(nombre == "Ceto", estadoLibertad == "preso")
+        $presoCeto : EstaPresoPor(ser == "Ceto", captor == "Poseidon")
+    then
+        delete($presoCeto);
+        modify($ceto) { setEstadoLibertad("libre") };
+        System.out.println("[Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.");
+end
+
+rule "Ceto apresa a Andromeda"
+    when
+        TieneEnfadoDe(personaje == "Casiopea", ser == "Poseidon")
+        Monstruo(nombre == "Ceto", estadoVida == "vivo", estadoLibertad == "libre")
+        $andromeda : Humano(nombre == "Andromeda", tieneMadre == "Casiopea", estadoLibertad == "libre")
+        not Accion(tipo == "Liberar", pacienteAccion == "Andromeda")
+    then
+        modify($andromeda) { setEstadoLibertad("preso") };
+        insert(new EstaPresoPor("Andromeda", "Ceto"));
+        System.out.println("[Mito] Ceto apresa a Andromeda.");
+end
+
+rule "Atenea entrega el Escudo de Bronce"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        TieneFavorDe(personaje == $h, ser == "Atenea")
+        $escudo : Proteccion(nombre == "Escudo de Bronce", perteneceASer == "Atenea")
+    then
+        modify($escudo) { setPerteneceASer($h) };
+        System.out.println("[Mito] Atenea otorga el Escudo de Bronce a " + $h + ".");
+end
+		
+rule "Hefesto pule el Escudo de Bronce y lo convierte en Escudo-Espejo"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        TieneFavorDe(personaje == $h, ser == "Hefesto")
+        $escudo : Proteccion(nombre == "Escudo de Bronce", perteneceASer == $h)
+    then
+        delete($escudo);
+        Proteccion espejo = new Proteccion("Escudo-Espejo");
+        espejo.setPerteneceASer($h);
+        insert(espejo);
+        System.out.println("[Mito] Hefesto pule el Escudo de Bronce de " + $h + " convirtiendolo en el Escudo-Espejo.");
+end
+
+rule "Hermes entrega la Hoz de Acero"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        TieneFavorDe(personaje == $h, ser == "Hermes")
+        $hoz : Arma(nombre == "Hoz de Acero", perteneceASer == "Hermes")
+    then
+        modify($hoz) { setPerteneceASer($h) };
+        System.out.println("[Mito] Hermes entrega la Hoz de Acero a " + $h + ".");
+end
+
+rule "Hades entrega el Casco de Hades"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        TieneFavorDe(personaje == $h, ser == "Hades")
+        $casco : ObjetoMagico(nombre == "Casco de Hades", perteneceASer == "Hades")
+    then
+        modify($casco) { setPerteneceASer($h) };
+        System.out.println("[Mito] Hades entrega su Casco de Invisibilidad a " + $h + ".");
+end
+
+rule "El heroe localiza a las Grayas con el favor de los dioses"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        TieneFavorDe(personaje == $h, ser == "Atenea")
+        TieneFavorDe(personaje == $h, ser == "Hermes")
+        TieneFavorDe(personaje == $h, ser == "Hades")
+        not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Grayas")
+    then
+        insert(new Accion("Localizar a las Grayas", "Localizar", $h, "Grayas"));
+        System.out.println("[Mito] Gracias al favor de Atenea, Hermes y Hades, " + $h + " localiza a las Grayas.");
+end
+
+rule "El heroe invisible roba el Ojo de las Grayas"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Grayas")
+        TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
+        $ojo : ObjetoMagico(nombre == "Ojo de las Grayas", perteneceASer == "Grayas")
+        not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
+    then
+        modify($ojo) { setPerteneceASer($h) };
+        System.out.println("[Mito] " + $h + " usa su invisibilidad para robar el Ojo de las Grayas.");
+end
+
+rule "El heroe devuelve el Ojo a las Grayas y localiza a las Ninfas"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        $ojo : ObjetoMagico(nombre == "Ojo de las Grayas", perteneceASer == $h)
+        not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
+    then
+        modify($ojo) { setPerteneceASer("Grayas") };
+        insert(new Accion("Localizar a las Ninfas", "Localizar", $h, "Ninfas"));
+        System.out.println("[Mito] " + $h + " devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.");
+end
+
+rule "Las Ninfas entregan el Zurron Magico y las Sandalias Aladas"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
+        $zurron : ObjetoMagico(nombre == "Zurron Magico", perteneceASer == "Ninfas")
+        $sandalias : ObjetoMagico(nombre == "Sandalias Aladas", perteneceASer == "Ninfas")
+    then
+        modify($zurron) { setPerteneceASer($h) };
+        modify($sandalias) { setPerteneceASer($h) };
+        System.out.println("[Mito] Las Ninfas entregan a " + $h + " el Zurron Magico y las Sandalias Aladas.");
+end
+
+rule "El heroe con vuelo localiza a Medusa"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        Monstruo(nombre == "Medusa", estadoVida == "vivo")
+        TieneCapacidad(ser == $h, capacidad == "Vuelo")
+        not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Medusa")
+    then
+        insert(new Accion("Localizar a Medusa", "Localizar", $h, "Medusa"));
+        System.out.println("[Mito] " + $h + " vuela y localiza a Medusa.");
+end
+
+rule "El heroe equipado mata a Medusa, obtiene su cabeza y nace Pegaso"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        $medusa : Monstruo(nombre == "Medusa", estadoVida == "vivo")
+        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Medusa")
+        Arma(nombre == "Hoz de Acero", perteneceASer == $h, estaRoto == false)
+        ObjetoMagico(nombre == "Zurron Magico", perteneceASer == $h, estaRoto == false)
+        TieneCapacidad(ser == $h, capacidad == "Vuelo")
+        TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
+        TieneCapacidad(ser == $h, capacidad == "Reflejo")
+        $cabeza : Trofeo(nombre == "Cabeza de Medusa", perteneceASer == "Medusa")
+    then
+        modify($medusa) { setEstadoVida("muerto") };
+        modify($cabeza) { setPerteneceASer($h) };
+        AnimalMitologico pegaso = new AnimalMitologico("Pegaso");
+        pegaso.setTieneMadre("Medusa");
+        insert(pegaso);
+        insert(new Accion("Matar a Medusa", "Matar", $h, "Medusa"));
+        System.out.println("[Mito] " + $h + " mira por el reflejo, decapita a Medusa con la Hoz de Acero y guarda la Cabeza de Medusa en el Zurron Magico. De su sangre nace Pegaso.");
+end
+
+rule "El heroe petrifica a Ceto con la Cabeza de Medusa y libera a Andromeda"
+	when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo")
+        $ceto : Monstruo(nombre == "Ceto", estadoVida == "vivo", estadoLibertad == "libre")
+        $andromeda : Humano(nombre == "Andromeda", estadoVida == "vivo", estadoLibertad == "preso")
+        $presa : EstaPresoPor(ser == "Andromeda", captor == "Ceto")
+        TieneCapacidad(ser == $h, capacidad == "Petrificacion")
+        TieneCapacidad(ser == $h, capacidad == "Vuelo")
+    then
+        modify($ceto) { setEstadoVida("muerto") };
+        delete($presa);
+        modify($andromeda) { setEstadoLibertad("libre") };
+        insert(new Accion("Matar a Ceto", "Matar", $h, "Ceto"));
+        insert(new Accion("Liberar a Andromeda", "Liberar", $h, "Andromeda"));
+        System.out.println("[Mito] " + $h + " petrifica al monstruo Ceto con la Cabeza de Medusa y libera a Andromeda.");
+end
+
+rule "Comprobacion de la mision"
+    when
+        $mision : Mision($tipo : tipo, $agente : agenteMision, $objetivo : objetivoMision, cumplida == false)
+        Accion(tipo == $tipo, agenteAccion == $agente, pacienteAccion == $objetivo)
+    then
+        modify($mision) { setCumplida(true) };
+        System.out.println(">>> [EXITO] Mision cumplida: " + $agente + " ha logrado " + $tipo + " a " + $objetivo + ". <<<");
+end
+		
+		
+		
+		
+		
+		
+		
+		
+		
