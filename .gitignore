@@ -1,16 +1,16 @@
-Archivos compilados de Java
+# Archivos compilados de Java
 *.class
 bin/
 target/
 
-Configuraciones locales de Eclipse
+# Configuraciones locales de Eclipse
 .settings/
 
-Archivos residuales del Sistema Operativo
+# Archivos residuales del Sistema Operativo
 .DS_Store
 Thumbs.db
 Thumbs.db:encrypt
 
-Archivos de log y temporales
+# Archivos de log y temporales
 *.log
 *.tmp
