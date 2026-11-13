@@ -59,8 +59,18 @@ public class Main {
 
                 // Crear sesión y ejecutar
                 KieSession kSession = kContainer.newKieSession("ksession-rules-dsi");
-                parser.procesarFichero(rutaEntrada, kSession);
+
                 kSession.fireAllRules();
+                parser.procesarFichero(rutaEntrada, kSession);
+
+                System.out.println("\n*** Estado inicial ***");
+                kSession.getAgenda().getAgendaGroup("informacionInicial").setFocus();
+                kSession.fireAllRules();
+
+                System.out.println("\n*** Historia ***");
+                kSession.getAgenda().getAgendaGroup("historia").setFocus();
+                kSession.fireAllRules();
+
                 kSession.dispose();
 
                 // Restaurar y cerrar

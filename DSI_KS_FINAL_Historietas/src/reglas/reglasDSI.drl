@@ -81,6 +81,7 @@ rule "Inicializar hechos por defecto del Mito de Perseo"
 end
 		
 rule "Inferir capacidad por posesion de objeto"
+	agenda-group "historia"
 	when
 		$obj : Objeto($nombreObj : nombre, $dueno : perteneceASer != null, estaRoto == false)
 		OtorgaCapacidad(objeto == $nombreObj, $cap : capacidad)
@@ -92,6 +93,7 @@ end
 	//Reglas del mito, encadenamiento hacia delante 	
 		
 rule "Poseidon libera a Ceto por enfado con Casiopea"
+    agenda-group "historia"
     when
         TieneEnfadoDe(personaje == "Casiopea", ser == "Poseidon")
         $ceto : Monstruo(nombre == "Ceto", estadoLibertad == "preso")
@@ -103,6 +105,7 @@ rule "Poseidon libera a Ceto por enfado con Casiopea"
 end
 
 rule "Ceto apresa a Andromeda"
+    agenda-group "historia"
     when
         TieneEnfadoDe(personaje == "Casiopea", ser == "Poseidon")
         Monstruo(nombre == "Ceto", estadoVida == "vivo", estadoLibertad == "libre")
@@ -115,6 +118,7 @@ rule "Ceto apresa a Andromeda"
 end
 
 rule "Atenea entrega el Escudo de Bronce"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -126,6 +130,7 @@ rule "Atenea entrega el Escudo de Bronce"
 end
 		
 rule "Hefesto pule el Escudo de Bronce y lo convierte en Escudo-Espejo"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -140,6 +145,7 @@ rule "Hefesto pule el Escudo de Bronce y lo convierte en Escudo-Espejo"
 end
 
 rule "Hermes entrega la Hoz de Acero"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -151,6 +157,7 @@ rule "Hermes entrega la Hoz de Acero"
 end
 
 rule "Hades entrega el Casco de Hades"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -162,6 +169,7 @@ rule "Hades entrega el Casco de Hades"
 end
 
 rule "El heroe localiza a las Grayas con el favor de los dioses"
+    agenda-group "historia"
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -175,6 +183,7 @@ rule "El heroe localiza a las Grayas con el favor de los dioses"
 end
 
 rule "El heroe invisible roba el Ojo de las Grayas"
+    agenda-group "historia"
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -188,6 +197,7 @@ rule "El heroe invisible roba el Ojo de las Grayas"
 end
 
 rule "El heroe devuelve el Ojo a las Grayas y localiza a las Ninfas"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -200,6 +210,7 @@ rule "El heroe devuelve el Ojo a las Grayas y localiza a las Ninfas"
 end
 
 rule "Las Ninfas entregan el Zurron Magico y las Sandalias Aladas"
+    agenda-group "historia"
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -213,6 +224,7 @@ rule "Las Ninfas entregan el Zurron Magico y las Sandalias Aladas"
 end
 
 rule "El heroe con vuelo localiza a Medusa"
+    agenda-group "historia"
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -225,6 +237,7 @@ rule "El heroe con vuelo localiza a Medusa"
 end
 
 rule "El heroe equipado mata a Medusa, obtiene su cabeza y nace Pegaso"
+    agenda-group "historia"
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -247,6 +260,7 @@ rule "El heroe equipado mata a Medusa, obtiene su cabeza y nace Pegaso"
 end
 
 rule "El heroe petrifica a Ceto con la Cabeza de Medusa y libera a Andromeda"
+    agenda-group "historia"
 	when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo")
@@ -265,6 +279,7 @@ rule "El heroe petrifica a Ceto con la Cabeza de Medusa y libera a Andromeda"
 end
 
 rule "Comprobacion de la mision"
+    agenda-group "historia"
     when
         $mision : Mision($tipo : tipo, $agente : agenteMision, $objetivo : objetivoMision, cumplida == false)
         Accion(tipo == $tipo, agenteAccion == $agente, pacienteAccion == $objetivo)
@@ -273,8 +288,23 @@ rule "Comprobacion de la mision"
         System.out.println(">>> [EXITO] Mision cumplida: " + $agente + " ha logrado " + $tipo + " a " + $objetivo + ". <<<");
 end
 		
-		
-		
+	
+rule "Mostrar estado inicial de los seres"
+    agenda-group "informacionInicial"
+	when
+	    Ser($nombre : nombre, $vida : estadoVida, $libertad : estadoLibertad)
+	then
+	    System.out.println("[Inicial] " + $nombre + ": " + $vida + ", " + $libertad);
+end
+
+rule "Mostrar propietario inicial de los objetos"
+    agenda-group "informacionInicial"
+	when
+	    Objeto($nombre : nombre, $dueno : perteneceASer)
+	then
+	    System.out.println("[Inicial] " + $nombre + " - propietario: " + $dueno);
+end	
+			
 		
 		
 		
