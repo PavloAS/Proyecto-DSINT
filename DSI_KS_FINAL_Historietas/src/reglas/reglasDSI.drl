@@ -121,7 +121,7 @@ rule "Atenea entrega el Escudo de Bronce"
     agenda-group "historia"
 	when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         TieneFavorDe(personaje == $h, ser == "Atenea")
         $escudo : Proteccion(nombre == "Escudo de Bronce", perteneceASer == "Atenea")
     then
@@ -133,7 +133,7 @@ rule "Hefesto pule el Escudo de Bronce y lo convierte en Escudo-Espejo"
     agenda-group "historia"
 	when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         TieneFavorDe(personaje == $h, ser == "Hefesto")
         $escudo : Proteccion(nombre == "Escudo de Bronce", perteneceASer == $h)
     then
@@ -148,7 +148,7 @@ rule "Hermes entrega la Hoz de Acero"
     agenda-group "historia"
 	when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         TieneFavorDe(personaje == $h, ser == "Hermes")
         $hoz : Arma(nombre == "Hoz de Acero", perteneceASer == "Hermes")
     then
@@ -160,7 +160,7 @@ rule "Hades entrega el Casco de Hades"
     agenda-group "historia"
 	when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         TieneFavorDe(personaje == $h, ser == "Hades")
         $casco : ObjetoMagico(nombre == "Casco de Hades", perteneceASer == "Hades")
     then
@@ -172,7 +172,7 @@ rule "El heroe localiza a las Grayas con el favor de los dioses"
     agenda-group "historia"
     when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         TieneFavorDe(personaje == $h, ser == "Atenea")
         TieneFavorDe(personaje == $h, ser == "Hermes")
         TieneFavorDe(personaje == $h, ser == "Hades")
@@ -186,7 +186,7 @@ rule "El heroe invisible roba el Ojo de las Grayas"
     agenda-group "historia"
     when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Grayas")
         TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
         $ojo : ObjetoMagico(nombre == "Ojo de las Grayas", perteneceASer == "Grayas")
@@ -200,7 +200,7 @@ rule "El heroe devuelve el Ojo a las Grayas y localiza a las Ninfas"
     agenda-group "historia"
 	when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         $ojo : ObjetoMagico(nombre == "Ojo de las Grayas", perteneceASer == $h)
         not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
     then
@@ -209,25 +209,23 @@ rule "El heroe devuelve el Ojo a las Grayas y localiza a las Ninfas"
         System.out.println("[Mito] " + $h + " devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.");
 end
 
-rule "Las Ninfas entregan el Zurron Magico y las Sandalias Aladas"
+rule "Las Ninfas entregan sus objetos al heroe"
     agenda-group "historia"
-    when
-        Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
-        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
-        $zurron : ObjetoMagico(nombre == "Zurron Magico", perteneceASer == "Ninfas")
-        $sandalias : ObjetoMagico(nombre == "Sandalias Aladas", perteneceASer == "Ninfas")
-    then
-        modify($zurron) { setPerteneceASer($h) };
-        modify($sandalias) { setPerteneceASer($h) };
-        System.out.println("[Mito] Las Ninfas entregan a " + $h + " el Zurron Magico y las Sandalias Aladas.");
+when
+    Heroe($h : nombre)
+    Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+    Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Ninfas")
+    $objeto : Objeto($nombre : nombre, perteneceASer == "Ninfas")
+then
+    modify($objeto) { setPerteneceASer($h) };
+    System.out.println("[Mito] Las Ninfas entregan " + $nombre + " a " + $h + ".");
 end
 
 rule "El heroe con vuelo localiza a Medusa"
     agenda-group "historia"
     when
         Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
         Monstruo(nombre == "Medusa", estadoVida == "vivo")
         TieneCapacidad(ser == $h, capacidad == "Vuelo")
         not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Medusa")
@@ -238,44 +236,69 @@ end
 
 rule "El heroe equipado mata a Medusa, obtiene su cabeza y nace Pegaso"
     agenda-group "historia"
-    when
-        Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
-        $medusa : Monstruo(nombre == "Medusa", estadoVida == "vivo")
-        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Medusa")
-        Arma(nombre == "Hoz de Acero", perteneceASer == $h, estaRoto == false)
-        ObjetoMagico(nombre == "Zurron Magico", perteneceASer == $h, estaRoto == false)
-        TieneCapacidad(ser == $h, capacidad == "Vuelo")
-        TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
-        TieneCapacidad(ser == $h, capacidad == "Reflejo")
-        $cabeza : Trofeo(nombre == "Cabeza de Medusa", perteneceASer == "Medusa")
-    then
-        modify($medusa) { setEstadoVida("muerto") };
-        modify($cabeza) { setPerteneceASer($h) };
-        AnimalMitologico pegaso = new AnimalMitologico("Pegaso");
-        pegaso.setTieneMadre("Medusa");
-        insert(pegaso);
-        insert(new Accion("Matar a Medusa", "Matar", $h, "Medusa"));
-        System.out.println("[Mito] " + $h + " mira por el reflejo, decapita a Medusa con la Hoz de Acero y guarda la Cabeza de Medusa en el Zurron Magico. De su sangre nace Pegaso.");
+when
+    Heroe($h : nombre)
+    Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+    $medusa : Monstruo(nombre == "Medusa", estadoVida == "vivo")
+    Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Medusa")
+    (
+        exists Arma(perteneceASer == $h, estaRoto == false)
+        or
+        TieneCapacidad(ser == $h, capacidad == "Fuerza")
+    )
+    ObjetoMagico(nombre == "Zurron Magico", perteneceASer == $h, estaRoto == false)
+    TieneCapacidad(ser == $h, capacidad == "Vuelo")
+    TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
+    TieneCapacidad(ser == $h, capacidad == "Reflejo")
+    $cabeza : Trofeo(nombre == "Cabeza de Medusa", perteneceASer == "Medusa")
+then
+    modify($medusa) { setEstadoVida("muerto") };
+    modify($cabeza) { setPerteneceASer($h) };
+    AnimalMitologico pegaso = new AnimalMitologico("Pegaso");
+    pegaso.setTieneMadre("Medusa");
+    insert(pegaso);
+    insert(new Accion("Matar a Medusa", "Matar", $h, "Medusa"));
+    System.out.println("[Mito] " + $h + " derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.");
 end
 
-rule "El heroe petrifica a Ceto con la Cabeza de Medusa y libera a Andromeda"
+rule "El heroe petrifica al monstruo captor"
     agenda-group "historia"
-	when
-        Heroe($h : nombre)
-        Personaje(nombre == $h, estadoVida == "vivo")
-        $ceto : Monstruo(nombre == "Ceto", estadoVida == "vivo", estadoLibertad == "libre")
-        $andromeda : Humano(nombre == "Andromeda", estadoVida == "vivo", estadoLibertad == "preso")
-        $presa : EstaPresoPor(ser == "Andromeda", captor == "Ceto")
-        TieneCapacidad(ser == $h, capacidad == "Petrificacion")
-        TieneCapacidad(ser == $h, capacidad == "Vuelo")
-    then
-        modify($ceto) { setEstadoVida("muerto") };
-        delete($presa);
-        modify($andromeda) { setEstadoLibertad("libre") };
-        insert(new Accion("Matar a Ceto", "Matar", $h, "Ceto"));
-        insert(new Accion("Liberar a Andromeda", "Liberar", $h, "Andromeda"));
-        System.out.println("[Mito] " + $h + " petrifica al monstruo Ceto con la Cabeza de Medusa y libera a Andromeda.");
+when
+    Heroe($h : nombre)
+    Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+    $monstruo : Monstruo($captor : nombre, estadoVida == "vivo", estadoLibertad == "libre")
+    exists EstaPresoPor(captor == $captor)
+    TieneCapacidad(ser == $h, capacidad == "Petrificacion")
+    TieneCapacidad(ser == $h, capacidad == "Vuelo")
+then
+    modify($monstruo) { setEstadoVida("muerto") };
+    insert(new Accion("Matar a " + $captor, "Matar", $h, $captor));
+    System.out.println("[Mito] " + $h + " petrifica a " + $captor + ".");
+end
+
+rule "Retirar una captura si quedan otros captores"
+    agenda-group "historia"
+when
+    Ser($captor : nombre, estadoVida == "muerto")
+    $captura : EstaPresoPor($victima : ser, captor == $captor)
+    exists EstaPresoPor(ser == $victima, captor != $captor)
+then
+    delete($captura);
+end
+
+rule "Liberar al prisionero cuando muere su ultimo captor"
+    agenda-group "historia"
+when
+    Accion(tipo == "Matar", $h : agenteAccion, $captor : pacienteAccion)
+    Ser(nombre == $captor, estadoVida == "muerto")
+    $prisionero : Ser($victima : nombre, estadoVida == "vivo", estadoLibertad == "preso")
+    $captura : EstaPresoPor(ser == $victima, captor == $captor)
+    not EstaPresoPor(ser == $victima, captor != $captor)
+then
+    delete($captura);
+    modify($prisionero) { setEstadoLibertad("libre") };
+    insert(new Accion("Liberar a " + $victima, "Liberar", $h, $victima));
+    System.out.println("[Mito] " + $h + " libera a " + $victima + ".");
 end
 
 rule "Comprobacion de la mision"
