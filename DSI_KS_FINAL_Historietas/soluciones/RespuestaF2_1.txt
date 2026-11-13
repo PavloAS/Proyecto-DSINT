@@ -1,0 +1,40 @@
+
+ *** Descripción Escenario F2-1 ***
+
+¿Puede Perseo liberar a Andromeda?
+Condiciones:
+Perseo tiene el favor de Atenea
+Perseo tiene el favor de Hermes
+Perseo tiene el favor de Hades
+Perseo tiene el favor de Hefesto
+Casiopea tiene el enfado de Poseidon
+
+ *** Fin Descripción Escenario ***
+
+Insertado FAVOR: Perseo -> Atenea
+Insertado FAVOR: Perseo -> Hermes
+Insertado FAVOR: Perseo -> Hades
+Insertado FAVOR: Perseo -> Hefesto
+Insertado ENFADO: Casiopea -> Poseidon
+Mundo iniciado correctamente
+[Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Capacidad] Ninfas adquiere la capacidad de Vuelo gracias a Sandalias Aladas
+[Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
+[Mito] Ceto apresa a Andromeda.
+[Mito] Atenea otorga el Escudo de Bronce a Perseo.
+[Mito] Hefesto pule el Escudo de Bronce de Perseo convirtiendolo en el Escudo-Espejo.
+[Capacidad] Perseo adquiere la capacidad de Reflejo gracias a Escudo-Espejo
+[Mito] Hermes entrega la Hoz de Acero a Perseo.
+[Mito] Hades entrega su Casco de Invisibilidad a Perseo.
+[Capacidad] Perseo adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Mito] Gracias al favor de Atenea, Hermes y Hades, Perseo localiza a las Grayas.
+[Mito] Perseo usa su invisibilidad para robar el Ojo de las Grayas.
+[Mito] Perseo devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
+[Mito] Las Ninfas entregan a Perseo el Zurron Magico y las Sandalias Aladas.
+[Capacidad] Perseo adquiere la capacidad de Vuelo gracias a Sandalias Aladas
+[Mito] Perseo vuela y localiza a Medusa.
+[Mito] Perseo mira por el reflejo, decapita a Medusa con la Hoz de Acero y guarda la Cabeza de Medusa en el Zurron Magico. De su sangre nace Pegaso.
+[Capacidad] Perseo adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Perseo petrifica al monstruo Ceto con la Cabeza de Medusa y libera a Andromeda.
+>>> [EXITO] Mision cumplida: Perseo ha logrado Liberar a Andromeda. <<<
