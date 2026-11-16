@@ -52,9 +52,12 @@ public class ParserEscenario {
             kSession.insert(new TieneEnfadoDe(personaje, dios));
             System.out.println("Insertado ENFADO: " + personaje + " -> " + dios);
 
-        } else if (linea.contains(" no tiene ")) {
-            String[] partes = linea.split(" no tiene ");
-            System.out.println("DESPOSESIÓN: " + partes[0].trim() + " pierde " + partes[1].trim());
+        } else if (linea.contains(" no tienen ") || linea.contains(" no tiene ")) {
+            String[] partes = linea.split(" no tiene[n]? "); // Para casos plural y singular
+            String personaje = partes[0].trim();
+            String objeto = partes[1].trim();
+            kSession.insert("DESPOSEER_" + objeto);
+            System.out.println("Insertado DESPOSESIÓN: " + personaje + " pierde " + objeto);
         }
     }
 }

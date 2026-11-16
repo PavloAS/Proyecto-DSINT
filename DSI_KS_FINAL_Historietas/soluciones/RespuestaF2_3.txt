@@ -1,0 +1,81 @@
+
+ *** Descripción Escenario F2-3 ***
+
+¿Puede Teseo liberar a Andromeda?
+Condiciones:
+Teseo tiene el favor de Atenea
+Teseo tiene el favor de Hermes
+Teseo tiene el favor de Hades
+Teseo tiene el favor de Hefesto
+Casiopea tiene el enfado de Poseidon
+
+ *** Fin Descripción Escenario ***
+
+Mundo iniciado correctamente
+Insertado FAVOR: Teseo -> Atenea
+Insertado FAVOR: Teseo -> Hermes
+Insertado FAVOR: Teseo -> Hades
+Insertado FAVOR: Teseo -> Hefesto
+Insertado ENFADO: Casiopea -> Poseidon
+
+*** Estado inicial ***
+[Inicial] Perseo: vivo, libre
+[Inicial] Heracles: vivo, libre
+[Inicial] Zeus: vivo, libre
+[Inicial] Poseidon: vivo, libre
+[Inicial] Atenea: vivo, libre
+[Inicial] Hermes: vivo, libre
+[Inicial] Hades: vivo, libre
+[Inicial] Hefesto: vivo, libre
+[Inicial] Danae: vivo, libre
+[Inicial] Casiopea: vivo, libre
+[Inicial] Andromeda: vivo, libre
+[Inicial] Teseo: vivo, libre
+[Inicial] Minos: vivo, libre
+[Inicial] Ariadna: vivo, libre
+[Inicial] Dedalo: vivo, libre
+[Inicial] Icaro: vivo, libre
+[Inicial] Grayas: vivo, libre
+[Inicial] Ninfas: vivo, libre
+[Inicial] Ceto: vivo, preso
+[Inicial] Medusa: vivo, libre
+[Inicial] Minotauro: vivo, preso
+[Inicial] Escudo de Bronce - propietario: Atenea
+[Inicial] Hoz de Acero - propietario: Hermes
+[Inicial] Casco de Hades - propietario: Hades
+[Inicial] Zurron Magico - propietario: Ninfas
+[Inicial] Sandalias Aladas - propietario: Ninfas
+[Inicial] Ojo de las Grayas - propietario: Grayas
+[Inicial] Cabeza de Medusa - propietario: Medusa
+[Inicial] Cabeza de Ceto - propietario: Ceto
+[Inicial] Hilo de Ariadna - propietario: Ariadna
+[Inicial] Espada de Teseo - propietario: Teseo
+[Inicial] Cuerno del Minotauro - propietario: Minotauro
+[Inicial] Cabeza del Minotauro - propietario: Minotauro
+[Inicial] Cera de Abejas - propietario: Laberinto
+[Inicial] Plumas de Aves - propietario: Laberinto
+
+*** Historia ***
+[Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Capacidad] Ninfas adquiere la capacidad de Vuelo gracias a Sandalias Aladas
+[Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
+[Mito] Ceto apresa a Andromeda.
+[Mito] Atenea otorga el Escudo de Bronce a Teseo.
+[Mito] Hefesto pule el Escudo de Bronce de Teseo convirtiendolo en el Escudo-Espejo.
+[Capacidad] Teseo adquiere la capacidad de Reflejo gracias a Escudo-Espejo
+[Mito] Hermes entrega la Hoz de Acero a Teseo.
+[Mito] Hades entrega su Casco de Invisibilidad a Teseo.
+[Capacidad] Teseo adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Mito] Gracias al favor de Atenea, Hermes y Hades, Teseo localiza a las Grayas.
+[Mito] Teseo usa su invisibilidad para robar el Ojo de las Grayas.
+[Mito] Teseo devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
+[Mito] Las Ninfas entregan Zurron Magico a Teseo.
+[Mito] Las Ninfas entregan Sandalias Aladas a Teseo.
+[Capacidad] Teseo adquiere la capacidad de Vuelo gracias a Sandalias Aladas
+[Mito] Teseo vuela y localiza a Medusa.
+[Mito] Teseo derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.
+[Capacidad] Teseo adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Teseo petrifica a Ceto.
+[Mito] Teseo obtiene Cabeza de Ceto tras vencer a Ceto.
+[Mito] Teseo libera a Andromeda.

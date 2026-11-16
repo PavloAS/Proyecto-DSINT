@@ -135,7 +135,18 @@ rule "Inicializar hechos por defecto de los Mitos"
 		
 		System.out.println("Mundo iniciado correctamente");
 end
-		
+rule "Procesar condiciones iniciales de desposesion"
+    agenda-group "historia"
+    salience 200 // Le damos una prioridad muy alta para que se ejecute lo primero y no se generen errores
+    when
+        $desposesion : String(this str[startsWith] "DESPOSEER_")
+        $nombreObjeto : String() from $desposesion.substring(10)
+        $objeto : Objeto(nombre == $nombreObjeto)
+    then
+        modify($objeto) { setPerteneceASer("Ninguno") };
+        delete($desposesion);
+        System.out.println("[Inicializacion] Se ha retirado el objeto " + $nombreObjeto + " de su dueño original por reglas del escenario.");
+end
 rule "Inferir capacidad por posesion de objeto"
 	agenda-group "historia"
 	salience 50

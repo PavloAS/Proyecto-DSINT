@@ -1,0 +1,104 @@
+
+ *** Descripción Escenario F2-4 ***
+
+¿Puede Perseo liberar a Andromeda con las alas del laberinto?
+Condiciones:
+Perseo tiene el favor de Atenea
+Perseo tiene el favor de Hermes
+Perseo tiene el favor de Hades
+Perseo tiene el favor de Hefesto
+Casiopea tiene el enfado de Poseidon
+Las Ninfas no tienen Sandalias Aladas
+Teseo tiene el favor de Ariadna
+
+ *** Fin Descripción Escenario ***
+
+Mundo iniciado correctamente
+Insertado FAVOR: Perseo -> Atenea
+Insertado FAVOR: Perseo -> Hermes
+Insertado FAVOR: Perseo -> Hades
+Insertado FAVOR: Perseo -> Hefesto
+Insertado ENFADO: Casiopea -> Poseidon
+Insertado DESPOSESIÓN: Las Ninfas pierde Sandalias Aladas
+Insertado FAVOR: Teseo -> Ariadna
+
+*** Estado inicial ***
+[Inicial] Perseo: vivo, libre
+[Inicial] Heracles: vivo, libre
+[Inicial] Zeus: vivo, libre
+[Inicial] Poseidon: vivo, libre
+[Inicial] Atenea: vivo, libre
+[Inicial] Hermes: vivo, libre
+[Inicial] Hades: vivo, libre
+[Inicial] Hefesto: vivo, libre
+[Inicial] Danae: vivo, libre
+[Inicial] Casiopea: vivo, libre
+[Inicial] Andromeda: vivo, libre
+[Inicial] Teseo: vivo, libre
+[Inicial] Minos: vivo, libre
+[Inicial] Ariadna: vivo, libre
+[Inicial] Dedalo: vivo, libre
+[Inicial] Icaro: vivo, libre
+[Inicial] Grayas: vivo, libre
+[Inicial] Ninfas: vivo, libre
+[Inicial] Ceto: vivo, preso
+[Inicial] Medusa: vivo, libre
+[Inicial] Minotauro: vivo, preso
+[Inicial] Escudo de Bronce - propietario: Atenea
+[Inicial] Hoz de Acero - propietario: Hermes
+[Inicial] Casco de Hades - propietario: Hades
+[Inicial] Zurron Magico - propietario: Ninfas
+[Inicial] Sandalias Aladas - propietario: Ninfas
+[Inicial] Ojo de las Grayas - propietario: Grayas
+[Inicial] Cabeza de Medusa - propietario: Medusa
+[Inicial] Cabeza de Ceto - propietario: Ceto
+[Inicial] Hilo de Ariadna - propietario: Ariadna
+[Inicial] Espada de Teseo - propietario: Teseo
+[Inicial] Cuerno del Minotauro - propietario: Minotauro
+[Inicial] Cabeza del Minotauro - propietario: Minotauro
+[Inicial] Cera de Abejas - propietario: Laberinto
+[Inicial] Plumas de Aves - propietario: Laberinto
+
+*** Historia ***
+[Inicializacion] Se ha retirado el objeto Sandalias Aladas de su dueño original por reglas del escenario.
+[Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Capacidad] Ninguno adquiere la capacidad de Vuelo gracias a Sandalias Aladas
+[Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
+[Mito] Ceto apresa a Andromeda.
+[Mito] Atenea otorga el Escudo de Bronce a Perseo.
+[Mito] Hefesto pule el Escudo de Bronce de Perseo convirtiendolo en el Escudo-Espejo.
+[Capacidad] Perseo adquiere la capacidad de Reflejo gracias a Escudo-Espejo
+[Mito] Hermes entrega la Hoz de Acero a Perseo.
+[Mito] Hades entrega su Casco de Invisibilidad a Perseo.
+[Capacidad] Perseo adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Mito] Gracias al favor de Atenea, Hermes y Hades, Perseo localiza a las Grayas.
+[Mito] Perseo usa su invisibilidad para robar el Ojo de las Grayas.
+[Mito] Perseo devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
+[Mito] Las Ninfas entregan Zurron Magico a Perseo.
+[Mito] Ariadna entrega el Hilo de Ariadna a Teseo.
+[Mito] Teseo entra al Laberinto llevando consigo el Hilo de Ariadna.
+[Mito] Gracias al Hilo de Ariadna, Teseo se orienta en el Laberinto y localiza al Minotauro.
+[Mito] Teseo se enfrenta y mata al Minotauro en el Laberinto.
+[Mito] Teseo obtiene Cuerno del Minotauro tras vencer a Minotauro.
+[Mito] Teseo obtiene Cabeza del Minotauro tras vencer a Minotauro.
+[Mito] Al descubrir que el Minotauro ha muerto, Minos se enfada con Dedalo.
+[Mito] Minos encierra a Dedalo en el Laberinto.
+[Mito] Minos encierra tambien a Icaro en el Laberinto junto a su padre Dedalo.
+[Mito] Dedalo recoge Cera de Abejas en el Laberinto.
+[Mito] Dedalo recoge Plumas de Aves en el Laberinto.
+[Mito] Dedalo utiliza la Cera de Abejas y las Plumas de Aves para construir las Alas de Dedalo y las Alas de Icaro.
+[Capacidad] Dedalo adquiere la capacidad de Vuelo gracias a Alas de Dedalo
+[Capacidad] Icaro adquiere la capacidad de Vuelo gracias a Alas de Icaro
+[Mito] Dedalo escapa volando del Laberinto.
+[Mito] Icaro escapa volando del Laberinto junto a su padre.
+[Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.
+[Mito] Hefesto repara las Alas de Icaro y se las entrega a Perseo.
+[Capacidad] Perseo adquiere la capacidad de Vuelo gracias a Alas de Icaro
+[Mito] Perseo vuela y localiza a Medusa.
+[Mito] Perseo derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.
+[Capacidad] Perseo adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Perseo petrifica a Ceto.
+[Mito] Perseo obtiene Cabeza de Ceto tras vencer a Ceto.
+[Mito] Perseo libera a Andromeda.
+>>> [EXITO] Mision cumplida: Perseo ha logrado Liberar a Andromeda. <<<
