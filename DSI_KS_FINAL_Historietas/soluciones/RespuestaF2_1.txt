@@ -1,7 +1,7 @@
 
  *** Descripción Escenario F2-1 ***
 
-¿Puede Perseo liberar a Andromeda?
+Puede Perseo liberar a Andromeda?
 Condiciones:
 Perseo tiene el favor de Atenea
 Perseo tiene el favor de Hermes
@@ -11,12 +11,53 @@ Casiopea tiene el enfado de Poseidon
 
  *** Fin Descripción Escenario ***
 
+[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: rules
+[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: rules
+Mundo iniciado correctamente
 Insertado FAVOR: Perseo -> Atenea
 Insertado FAVOR: Perseo -> Hermes
 Insertado FAVOR: Perseo -> Hades
 Insertado FAVOR: Perseo -> Hefesto
 Insertado ENFADO: Casiopea -> Poseidon
-Mundo iniciado correctamente
+
+*** Estado inicial ***
+[Inicial] Perseo: vivo, libre
+[Inicial] Heracles: vivo, libre
+[Inicial] Zeus: vivo, libre
+[Inicial] Poseidon: vivo, libre
+[Inicial] Atenea: vivo, libre
+[Inicial] Hermes: vivo, libre
+[Inicial] Hades: vivo, libre
+[Inicial] Hefesto: vivo, libre
+[Inicial] Danae: vivo, libre
+[Inicial] Casiopea: vivo, libre
+[Inicial] Andromeda: vivo, libre
+[Inicial] Teseo: vivo, libre
+[Inicial] Minos: vivo, libre
+[Inicial] Ariadna: vivo, libre
+[Inicial] Dedalo: vivo, libre
+[Inicial] Icaro: vivo, libre
+[Inicial] Grayas: vivo, libre
+[Inicial] Ninfas: vivo, libre
+[Inicial] Ceto: vivo, preso
+[Inicial] Medusa: vivo, libre
+[Inicial] Minotauro: vivo, preso
+[Inicial] Escudo de Bronce - propietario: Atenea
+[Inicial] Hoz de Acero - propietario: Hermes
+[Inicial] Casco de Hades - propietario: Hades
+[Inicial] Zurron Magico - propietario: Ninfas
+[Inicial] Sandalias Aladas - propietario: Ninfas
+[Inicial] Ojo de las Grayas - propietario: Grayas
+[Inicial] Cabeza de Medusa - propietario: Medusa
+[Inicial] Cabeza de Ceto - propietario: Ceto
+[Inicial] Hilo de Ariadna - propietario: Ariadna
+[Inicial] Espada de Teseo - propietario: Teseo
+[Inicial] Cuerno del Minotauro - propietario: Minotauro
+[Inicial] Cabeza del Minotauro - propietario: Minotauro
+[Inicial] Cera de Abejas - propietario: Laberinto
+[Inicial] Plumas de Aves - propietario: Laberinto
+
+*** Historia ***
 [Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
 [Capacidad] Ninfas adquiere la capacidad de Vuelo gracias a Sandalias Aladas
 [Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
@@ -31,10 +72,13 @@ Mundo iniciado correctamente
 [Mito] Gracias al favor de Atenea, Hermes y Hades, Perseo localiza a las Grayas.
 [Mito] Perseo usa su invisibilidad para robar el Ojo de las Grayas.
 [Mito] Perseo devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
-[Mito] Las Ninfas entregan a Perseo el Zurron Magico y las Sandalias Aladas.
+[Mito] Las Ninfas entregan Zurron Magico a Perseo.
+[Mito] Las Ninfas entregan Sandalias Aladas a Perseo.
 [Capacidad] Perseo adquiere la capacidad de Vuelo gracias a Sandalias Aladas
 [Mito] Perseo vuela y localiza a Medusa.
-[Mito] Perseo mira por el reflejo, decapita a Medusa con la Hoz de Acero y guarda la Cabeza de Medusa en el Zurron Magico. De su sangre nace Pegaso.
+[Mito] Perseo derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.
 [Capacidad] Perseo adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
-[Mito] Perseo petrifica al monstruo Ceto con la Cabeza de Medusa y libera a Andromeda.
+[Mito] Perseo petrifica a Ceto.
+[Mito] Perseo obtiene Cabeza de Ceto tras vencer a Ceto.
+[Mito] Perseo libera a Andromeda.
 >>> [EXITO] Mision cumplida: Perseo ha logrado Liberar a Andromeda. <<<

@@ -2,16 +2,22 @@ package reglas
 
 import modelo.*;
 
-rule "Inicializar hechos por defecto del Mito de Perseo"
+rule "Inicializar hechos por defecto de los Mitos"
 	salience 100
 	when
 	then
-		//Protagonista
+		//Semidioses
 		Semidios perseo = new Semidios("Perseo");
 		perseo.setTienePadre("Zeus");
 		perseo.setTieneMadre("Danae");
 		insert(perseo);
 		insert(new Heroe("Perseo"));
+		
+		Semidios heracles = new Semidios("Heracles");
+		insert(new Heroe("Heracles"));
+		heracles.setTienePadre("Zeus");
+		insert(heracles);
+		insert(new TieneCapacidad("Heracles", "Fuerza"));
 		
 		//Dioses
 		insert(new Dios("Zeus"));
@@ -28,9 +34,24 @@ rule "Inicializar hechos por defecto del Mito de Perseo"
 		andromeda.setTieneMadre("Casiopea");
 		insert(andromeda);
 		
-		//Grupos y Criaturas
+		Humano teseo = new Humano("Teseo");
+		insert(new Heroe("Teseo")); 
+		insert(teseo);
+		
+		insert(new Humano("Minos"));
+		Humano ariadna = new Humano("Ariadna");
+		ariadna.setTienePadre("Minos");
+		insert(ariadna);
+		
+		insert(new Humano("Dedalo"));
+		Humano icaro = new Humano("Icaro");
+		icaro.setTienePadre("Dedalo");
+		insert(icaro);
+		
+		//Grupos, Criaturas y Lugares
 		insert(new Grupo("Grayas"));
 		insert(new Grupo("Ninfas"));
+		insert(new Lugar("Laberinto"));
 		
 		Monstruo ceto = new Monstruo("Ceto");
 		ceto.setEstadoLibertad("preso");
@@ -38,6 +59,11 @@ rule "Inicializar hechos por defecto del Mito de Perseo"
 		insert(new EstaPresoPor("Ceto", "Poseidon"));
 		
 		insert(new Monstruo("Medusa"));
+		
+		Monstruo minotauro = new Monstruo("Minotauro");
+		minotauro.setEstadoLibertad("preso");
+		insert(minotauro);
+		insert(new EstaPresoPor("Minotauro", "Minos"));
 		
 		//Objetos y poseedores
 		Proteccion escudo = new Proteccion("Escudo de Bronce");
@@ -68,8 +94,38 @@ rule "Inicializar hechos por defecto del Mito de Perseo"
 		cabezaMedusa.setPerteneceASer("Medusa");
 		insert(cabezaMedusa);
 		
+		Trofeo cabezaCeto = new Trofeo("Cabeza de Ceto");
+		cabezaCeto.setPerteneceASer("Ceto");
+		insert(cabezaCeto);
+		
+		Herramienta hilo = new Herramienta("Hilo de Ariadna");
+		hilo.setPerteneceASer("Ariadna");
+		insert(hilo);
+
+		Arma espadaTeseo = new Arma("Espada de Teseo");
+		espadaTeseo.setPerteneceASer("Teseo");
+		insert(espadaTeseo);
+
+		Arma cuerno = new Arma("Cuerno del Minotauro");
+		cuerno.setPerteneceASer("Minotauro");
+		insert(cuerno);
+
+		Trofeo cabezaMinotauro = new Trofeo("Cabeza del Minotauro");
+		cabezaMinotauro.setPerteneceASer("Minotauro");
+		insert(cabezaMinotauro);
+
+		Herramienta cera = new Herramienta("Cera de Abejas");
+		cera.setPerteneceASer("Laberinto");
+		insert(cera);
+		
+		Herramienta plumas = new Herramienta("Plumas de Aves");
+		plumas.setPerteneceASer("Laberinto");
+		insert(plumas);
+		
 		//Capacidades
 		insert(new OtorgaCapacidad("Sandalias Aladas", "Vuelo"));
+		insert(new OtorgaCapacidad("Alas de Dedalo", "Vuelo"));
+		insert(new OtorgaCapacidad("Alas de Icaro", "Vuelo"));
 		insert(new OtorgaCapacidad("Casco de Hades", "Invisibilidad"));
 		insert(new OtorgaCapacidad("Escudo-Espejo", "Reflejo"));
 		insert(new OtorgaCapacidad("Cabeza de Medusa", "Petrificacion"));
@@ -82,6 +138,7 @@ end
 		
 rule "Inferir capacidad por posesion de objeto"
 	agenda-group "historia"
+	salience 50
 	when
 		$obj : Objeto($nombreObj : nombre, $dueno : perteneceASer != null, estaRoto == false)
 		OtorgaCapacidad(objeto == $nombreObj, $cap : capacidad)
@@ -90,7 +147,7 @@ rule "Inferir capacidad por posesion de objeto"
 		System.out.println("[Capacidad] " + $dueno + " adquiere la capacidad de " + $cap + " gracias a " + $nombreObj);
 end		
 		
-	//Reglas del mito, encadenamiento hacia delante 	
+	//MITO DE PERSEO Y ANDROMEDA, encadenamiento hacia delante 	
 		
 rule "Poseidon libera a Ceto por enfado con Casiopea"
     agenda-group "historia"
@@ -278,6 +335,7 @@ end
 
 rule "Retirar una captura si quedan otros captores"
     agenda-group "historia"
+    salience 10
 when
     Ser($captor : nombre, estadoVida == "muerto")
     $captura : EstaPresoPor($victima : ser, captor == $captor)
@@ -288,6 +346,7 @@ end
 
 rule "Liberar al prisionero cuando muere su ultimo captor"
     agenda-group "historia"
+    salience 10
 when
     Accion(tipo == "Matar", $h : agenteAccion, $captor : pacienteAccion)
     Ser(nombre == $captor, estadoVida == "muerto")
@@ -303,6 +362,7 @@ end
 
 rule "Comprobacion de la mision"
     agenda-group "historia"
+    salience -10
     when
         $mision : Mision($tipo : tipo, $agente : agenteMision, $objetivo : objetivoMision, cumplida == false)
         Accion(tipo == $tipo, agenteAccion == $agente, pacienteAccion == $objetivo)
@@ -328,9 +388,274 @@ rule "Mostrar propietario inicial de los objetos"
 	    System.out.println("[Inicial] " + $nombre + " - propietario: " + $dueno);
 end	
 			
+	//MITO DEL LABERINTO Y EL MINOTAURO
+
+rule "Minos envia a Andromeda al Laberinto por enfado con Casiopea"
+    agenda-group "historia"
+    when
+        TieneEnfadoDe(personaje == "Casiopea", ser == "Minos")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        Humano(nombre == "Andromeda", tieneMadre == "Casiopea", estadoVida == "vivo", estadoLibertad == "libre")
+        not Accion(tipo == "Entrar", agenteAccion == "Andromeda", pacienteAccion == "Laberinto")
+    then
+        insert(new Accion("Entrar al Laberinto", "Entrar", "Andromeda", "Laberinto"));
+        System.out.println("[Mito] Minos, enfadado con Casiopea, envia a Andromeda al Laberinto.");
+end
+
+rule "Minos envia al Laberinto a quien tiene su enfado"
+    agenda-group "historia"
+    when
+        TieneEnfadoDe($p : personaje != "Casiopea" && personaje != "Dedalo", ser == "Minos")
+        Personaje(nombre == $p, estadoVida == "vivo", estadoLibertad == "libre")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        not Accion(tipo == "Entrar", agenteAccion == $p, pacienteAccion == "Laberinto")
+    then
+        insert(new Accion("Entrar al Laberinto", "Entrar", $p, "Laberinto"));
+        System.out.println("[Mito] Por el enfado de Minos, " + $p + " es enviado al interior del Laberinto.");
+end
+
+rule "Quien entra al Laberinto sin el Hilo de Ariadna queda preso del Minotauro"
+    agenda-group "historia"
+    when
+        Accion(tipo == "Entrar", $p : agenteAccion, pacienteAccion == "Laberinto")
+        $ser : Personaje(nombre == $p, estadoVida == "vivo", estadoLibertad == "libre")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        not Herramienta(nombre == "Hilo de Ariadna", perteneceASer == $p)
+        not Accion(tipo == "Liberar", pacienteAccion == $p)
+    then
+        modify($ser) { setEstadoLibertad("preso") };
+        insert(new EstaPresoPor($p, "Minotauro"));
+        System.out.println("[Mito] " + $p + " entra al Laberinto sin el Hilo de Ariadna, se pierde y queda preso del Minotauro.");
+end
+
+rule "Ariadna entrega el Hilo de Ariadna al heroe con su favor"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        TieneFavorDe(personaje == $h, ser == "Ariadna")
+        $hilo : Herramienta(nombre == "Hilo de Ariadna", perteneceASer == "Ariadna")
+    then
+        modify($hilo) { setPerteneceASer($h) };
+        System.out.println("[Mito] Ariadna entrega el Hilo de Ariadna a " + $h + ".");
+end
+
+rule "El heroe invisible roba el Hilo de Ariadna"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        TieneCapacidad(ser == $h, capacidad == "Invisibilidad")
+        not TieneFavorDe(personaje == $h, ser == "Ariadna")
+        $hilo : Herramienta(nombre == "Hilo de Ariadna", perteneceASer == "Ariadna")
+   		exists EstaPresoPor(captor == "Minotauro")
+    then
+        modify($hilo) { setPerteneceASer($h) };
+        System.out.println("[Mito] " + $h + " usa su invisibilidad para robar el Hilo de Ariadna.");
+end
+
+rule "El heroe con el Hilo de Ariadna entra al Laberinto"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        Herramienta(nombre == "Hilo de Ariadna", perteneceASer == $h)
+        not Accion(tipo == "Entrar", agenteAccion == $h, pacienteAccion == "Laberinto")
+    then
+        insert(new Accion("Entrar al Laberinto", "Entrar", $h, "Laberinto"));
+        System.out.println("[Mito] " + $h + " entra al Laberinto llevando consigo el Hilo de Ariadna.");
+end
+
+rule "El heroe con el Hilo de Ariadna localiza al Minotauro"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        Accion(tipo == "Entrar", agenteAccion == $h, pacienteAccion == "Laberinto")
+        Herramienta(nombre == "Hilo de Ariadna", perteneceASer == $h)
+        not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Minotauro")
+    then
+        insert(new Accion("Localizar a Minotauro", "Localizar", $h, "Minotauro"));
+        System.out.println("[Mito] Gracias al Hilo de Ariadna, " + $h + " se orienta en el Laberinto y localiza al Minotauro.");
+end
+
+rule "El Minotauro apresa al heroe que lo localiza desarmado y sin fuerza"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        $ser : Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Minotauro")
+        not Arma(perteneceASer == $h, estaRoto == false)
+        not TieneCapacidad(ser == $h, capacidad == "Fuerza")
+        not TieneCapacidad(ser == $h, capacidad == "Petrificacion")
+    then
+        modify($ser) { setEstadoLibertad("preso") };
+        insert(new EstaPresoPor($h, "Minotauro"));
+        System.out.println("[Mito] Al enfrentarse al Minotauro sin armas ni fuerza, " + $h + " es derrotado y queda preso del Minotauro.");
+end
+
+rule "El heroe mata al Minotauro"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        $minotauro : Monstruo(nombre == "Minotauro", estadoVida == "vivo")
+        Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Minotauro")
+        (
+            exists Arma(perteneceASer == $h, estaRoto == false)
+            or
+            TieneCapacidad(ser == $h, capacidad == "Fuerza")
+            or
+            TieneCapacidad(ser == $h, capacidad == "Petrificacion")
+        )
+    then
+        modify($minotauro) { setEstadoVida("muerto") };
+        insert(new Accion("Matar a Minotauro", "Matar", $h, "Minotauro"));
+        System.out.println("[Mito] " + $h + " se enfrenta y mata al Minotauro en el Laberinto.");
+end
+
+rule "El heroe obtiene los objetos del monstruo derrotado"
+    agenda-group "historia"
+    salience 20
+    when
+        Accion(tipo == "Matar", $h : agenteAccion, $m : pacienteAccion != "Medusa")
+        $objeto : Objeto($nombre : nombre, perteneceASer == $m)
+    then
+        modify($objeto) { setPerteneceASer($h) };
+        System.out.println("[Mito] " + $h + " obtiene " + $nombre + " tras vencer a " + $m + ".");
+end
 		
-		
-		
-		
+ 		//DEDALO, ICARO
+
+rule "Minos se enfada con Dedalo tras la muerte del Minotauro"
+    agenda-group "historia"
+    when
+        Monstruo(nombre == "Minotauro", estadoVida == "muerto")
+        Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "libre")
+        not TieneEnfadoDe(personaje == "Dedalo", ser == "Minos")
+    then
+        insert(new TieneEnfadoDe("Dedalo", "Minos"));
+        System.out.println("[Mito] Al descubrir que el Minotauro ha muerto, Minos se enfada con Dedalo.");
+end
+
+rule "Minos encierra a Dedalo en el Laberinto"
+    agenda-group "historia"
+    when
+        TieneEnfadoDe(personaje == "Dedalo", ser == "Minos")
+        $dedalo : Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "libre")
+        not Accion(tipo == "Liberar", pacienteAccion == "Dedalo")
+    then
+        modify($dedalo) { setEstadoLibertad("preso") };
+        insert(new EstaPresoPor("Dedalo", "Minos"));
+        System.out.println("[Mito] Minos encierra a Dedalo en el Laberinto.");
+end
+
+rule "Minos encierra a Icaro en el Laberinto junto a su padre"
+    agenda-group "historia"
+    when
+        EstaPresoPor(ser == "Dedalo", captor == "Minos")
+        $icaro : Humano(nombre == "Icaro", tienePadre == "Dedalo", estadoVida == "vivo", estadoLibertad == "libre")
+        not ObjetoMagico(nombre == "Alas de Icaro")
+    then
+        modify($icaro) { setEstadoLibertad("preso") };
+        insert(new EstaPresoPor("Icaro", "Minos"));
+        System.out.println("[Mito] Minos encierra tambien a Icaro en el Laberinto junto a su padre Dedalo.");
+end
+
+rule "Dedalo recoge los materiales del Laberinto"
+    agenda-group "historia"
+    when
+        Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "preso")
+        $material : Herramienta($nombre : nombre, perteneceASer == "Laberinto")
+    then
+        modify($material) { setPerteneceASer("Dedalo") };
+        System.out.println("[Mito] Dedalo recoge " + $nombre + " en el Laberinto.");
+end
+
+rule "Dedalo construye las Alas con la cera y las plumas"
+    agenda-group "historia"
+    when
+        Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "preso")
+        Humano(nombre == "Icaro", estadoVida == "vivo", estadoLibertad == "preso")
+        $cera : Herramienta(nombre == "Cera de Abejas", perteneceASer == "Dedalo")
+        $plumas : Herramienta(nombre == "Plumas de Aves", perteneceASer == "Dedalo")
+    then
+        delete($cera);
+        delete($plumas);
+        ObjetoMagico alasDedalo = new ObjetoMagico("Alas de Dedalo");
+        alasDedalo.setPerteneceASer("Dedalo");
+        insert(alasDedalo);
+        ObjetoMagico alasIcaro = new ObjetoMagico("Alas de Icaro");
+        alasIcaro.setPerteneceASer("Icaro");
+        insert(alasIcaro);
+        System.out.println("[Mito] Dedalo utiliza la Cera de Abejas y las Plumas de Aves para construir las Alas de Dedalo y las Alas de Icaro.");
+end
+
+rule "Dedalo escapa volando del Laberinto"
+    agenda-group "historia"
+    when
+        $dedalo : Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "preso")
+        $presoDedalo : EstaPresoPor(ser == "Dedalo", captor == "Minos")
+        TieneCapacidad(ser == "Dedalo", capacidad == "Vuelo")
+    then
+        delete($presoDedalo);
+        modify($dedalo) { setEstadoLibertad("libre") };
+        insert(new Accion("Liberar a Dedalo", "Liberar", "Dedalo", "Dedalo"));
+        System.out.println("[Mito] Dedalo escapa volando del Laberinto.");
+end
+
+rule "Icaro escapa volando del Laberinto"
+    agenda-group "historia"
+    when
+        $icaro : Humano(nombre == "Icaro", estadoVida == "vivo", estadoLibertad == "preso")
+        $presoIcaro : EstaPresoPor(ser == "Icaro", captor == "Minos")
+        TieneCapacidad(ser == "Icaro", capacidad == "Vuelo")
+    then
+        delete($presoIcaro);
+        modify($icaro) { setEstadoLibertad("libre") };
+        System.out.println("[Mito] Icaro escapa volando del Laberinto junto a su padre.");
+end
+
+rule "Icaro se acerca al sol, sus alas se rompen y muere"
+    agenda-group "historia"
+    when
+        $icaro : Humano(nombre == "Icaro", estadoVida == "vivo", estadoLibertad == "libre")
+        $alasIcaro : ObjetoMagico(nombre == "Alas de Icaro", perteneceASer == "Icaro", estaRoto == false)
+    then
+        modify($alasIcaro) { setEstaRoto(true) };
+        modify($icaro) { setEstadoVida("muerto") };
+        System.out.println("[Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.");
+end
+
+rule "Dedalo entrega las Alas de Dedalo al heroe con su favor"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        TieneFavorDe(personaje == $h, ser == "Dedalo")
+        Humano(nombre == "Dedalo", estadoVida == "vivo", estadoLibertad == "libre")
+        $alas : ObjetoMagico(nombre == "Alas de Dedalo", perteneceASer == "Dedalo", estaRoto == false)
+        not TieneCapacidad(ser == $h, capacidad == "Vuelo")
+    then
+        modify($alas) { setPerteneceASer($h) };
+        System.out.println("[Mito] Dedalo entrega las Alas de Dedalo a " + $h + ".");
+end
+
+rule "Hefesto repara las Alas de Icaro y se las entrega al heroe"
+    agenda-group "historia"
+    when
+        Heroe($h : nombre)
+        Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
+        TieneFavorDe(personaje == $h, ser == "Hefesto")
+        $alasIcaro : ObjetoMagico(nombre == "Alas de Icaro", estaRoto == true)
+        not TieneCapacidad(ser == $h, capacidad == "Vuelo")
+    then
+        modify($alasIcaro) { setEstaRoto(false), setPerteneceASer($h) };
+        System.out.println("[Mito] Hefesto repara las Alas de Icaro y se las entrega a " + $h + ".");
+end
+
 		
 		
