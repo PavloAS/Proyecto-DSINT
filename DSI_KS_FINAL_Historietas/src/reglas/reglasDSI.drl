@@ -131,13 +131,13 @@ rule "Inicializar hechos por defecto de los Mitos"
 		insert(new OtorgaCapacidad("Cabeza de Medusa", "Petrificacion"));
 		
 		//Mision
-		insert(new Mision("Liberar a Andromeda", "Liberar", "Perseo", "Andromeda"));
+//		insert(new Mision("Liberar a Andromeda", "Liberar", "Perseo", "Andromeda"));
 		
 		System.out.println("Mundo iniciado correctamente");
 end
 rule "Procesar condiciones iniciales de desposesion"
-    agenda-group "historia"
-    salience 200 // Le damos una prioridad muy alta para que se ejecute lo primero y no se generen errores
+    agenda-group "informacionInicial"
+    salience 200 // Se ejecuta al principio de infromacionInicial
     when
         $desposesion : String(this str[startsWith] "DESPOSEER_")
         $nombreObjeto : String() from $desposesion.substring(10)
@@ -151,7 +151,7 @@ rule "Inferir capacidad por posesion de objeto"
 	agenda-group "historia"
 	salience 50
 	when
-		$obj : Objeto($nombreObj : nombre, $dueno : perteneceASer != null, estaRoto == false)
+		$obj : Objeto($nombreObj : nombre, $dueno : perteneceASer != null && perteneceASer != "Ninguno", estaRoto == false)
 		OtorgaCapacidad(objeto == $nombreObj, $cap : capacidad)
 	then
 		insertLogical(new TieneCapacidad($dueno, $cap));
@@ -643,6 +643,7 @@ end
 
 rule "Dedalo entrega las Alas de Dedalo al heroe con su favor"
     agenda-group "historia"
+    salience 5
     when
         Heroe($h : nombre)
         Personaje(nombre == $h, estadoVida == "vivo", estadoLibertad == "libre")
@@ -669,4 +670,15 @@ rule "Hefesto repara las Alas de Icaro y se las entrega al heroe"
 end
 
 		
-		
+	//Regla para el escenario 8
+rule "Zeus revela a su hijo como localizar a las Grayas"
+	agenda-group "historia"
+	when
+		Heroe($h : nombre)
+		Personaje(nombre == $h, tienePadre == "Zeus", estadoVida == "vivo", estadoLibertad == "libre")
+		TieneFavorDe(personaje == $h, ser == "Zeus")
+		not Accion(tipo == "Localizar", agenteAccion == $h, pacienteAccion == "Grayas")
+	then
+		insert(new Accion("Localizar a las Grayas", "Localizar", $h, "Grayas"));
+		System.out.println("[Mito] Zeus ayuda a su hijo " + $h + " y le revela como localizar a las Grayas.");
+end

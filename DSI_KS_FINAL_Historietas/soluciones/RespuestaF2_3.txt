@@ -79,3 +79,4 @@ Insertado ENFADO: Casiopea -> Poseidon
 [Mito] Teseo petrifica a Ceto.
 [Mito] Teseo obtiene Cabeza de Ceto tras vencer a Ceto.
 [Mito] Teseo libera a Andromeda.
+>>> [EXITO] Mision cumplida: Teseo ha logrado Liberar a Andromeda. <<<

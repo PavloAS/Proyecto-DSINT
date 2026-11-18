@@ -1,0 +1,110 @@
+
+ *** Descripción Escenario F2-8 ***
+
+¿Puede Heracles liberar a Andromeda?
+Condiciones:
+Casiopea tiene el enfado de Poseidon
+Danae tiene el enfado de Minos
+Las Ninfas no tienen Sandalias Aladas
+Hermes no tiene Hoz de Acero
+Heracles tiene el favor de Zeus
+Heracles tiene el favor de Atenea
+Heracles tiene el favor de Hefesto
+Heracles tiene el favor de Hades
+Heracles tiene el favor de Dedalo
+
+ *** Fin Descripción Escenario ***
+
+Mundo iniciado correctamente
+Insertado ENFADO: Casiopea -> Poseidon
+Insertado ENFADO: Danae -> Minos
+Insertado DESPOSESIÓN: Las Ninfas pierde Sandalias Aladas
+Insertado DESPOSESIÓN: Hermes pierde Hoz de Acero
+Insertado FAVOR: Heracles -> Zeus
+Insertado FAVOR: Heracles -> Atenea
+Insertado FAVOR: Heracles -> Hefesto
+Insertado FAVOR: Heracles -> Hades
+Insertado FAVOR: Heracles -> Dedalo
+
+*** Estado inicial ***
+[Inicializacion] Se ha retirado el objeto Hoz de Acero de su dueño original por reglas del escenario.
+[Inicializacion] Se ha retirado el objeto Sandalias Aladas de su dueño original por reglas del escenario.
+[Inicial] Perseo: vivo, libre
+[Inicial] Heracles: vivo, libre
+[Inicial] Zeus: vivo, libre
+[Inicial] Poseidon: vivo, libre
+[Inicial] Atenea: vivo, libre
+[Inicial] Hermes: vivo, libre
+[Inicial] Hades: vivo, libre
+[Inicial] Hefesto: vivo, libre
+[Inicial] Danae: vivo, libre
+[Inicial] Casiopea: vivo, libre
+[Inicial] Andromeda: vivo, libre
+[Inicial] Teseo: vivo, libre
+[Inicial] Minos: vivo, libre
+[Inicial] Ariadna: vivo, libre
+[Inicial] Dedalo: vivo, libre
+[Inicial] Icaro: vivo, libre
+[Inicial] Grayas: vivo, libre
+[Inicial] Ninfas: vivo, libre
+[Inicial] Ceto: vivo, preso
+[Inicial] Medusa: vivo, libre
+[Inicial] Minotauro: vivo, preso
+[Inicial] Escudo de Bronce - propietario: Atenea
+[Inicial] Hoz de Acero - propietario: Ninguno
+[Inicial] Casco de Hades - propietario: Hades
+[Inicial] Zurron Magico - propietario: Ninfas
+[Inicial] Sandalias Aladas - propietario: Ninguno
+[Inicial] Ojo de las Grayas - propietario: Grayas
+[Inicial] Cabeza de Medusa - propietario: Medusa
+[Inicial] Cabeza de Ceto - propietario: Ceto
+[Inicial] Hilo de Ariadna - propietario: Ariadna
+[Inicial] Espada de Teseo - propietario: Teseo
+[Inicial] Cuerno del Minotauro - propietario: Minotauro
+[Inicial] Cabeza del Minotauro - propietario: Minotauro
+[Inicial] Cera de Abejas - propietario: Laberinto
+[Inicial] Plumas de Aves - propietario: Laberinto
+
+*** Historia ***
+[Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
+[Mito] Ceto apresa a Andromeda.
+[Mito] Atenea otorga el Escudo de Bronce a Heracles.
+[Mito] Hefesto pule el Escudo de Bronce de Heracles convirtiendolo en el Escudo-Espejo.
+[Capacidad] Heracles adquiere la capacidad de Reflejo gracias a Escudo-Espejo
+[Mito] Hades entrega su Casco de Invisibilidad a Heracles.
+[Capacidad] Heracles adquiere la capacidad de Invisibilidad gracias a Casco de Hades
+[Mito] Por el enfado de Minos, Danae es enviado al interior del Laberinto.
+[Mito] Danae entra al Laberinto sin el Hilo de Ariadna, se pierde y queda preso del Minotauro.
+[Mito] Heracles usa su invisibilidad para robar el Hilo de Ariadna.
+[Mito] Heracles entra al Laberinto llevando consigo el Hilo de Ariadna.
+[Mito] Gracias al Hilo de Ariadna, Heracles se orienta en el Laberinto y localiza al Minotauro.
+[Mito] Heracles se enfrenta y mata al Minotauro en el Laberinto.
+[Mito] Heracles obtiene Cuerno del Minotauro tras vencer a Minotauro.
+[Mito] Heracles obtiene Cabeza del Minotauro tras vencer a Minotauro.
+[Mito] Heracles libera a Danae.
+[Mito] Al descubrir que el Minotauro ha muerto, Minos se enfada con Dedalo.
+[Mito] Minos encierra a Dedalo en el Laberinto.
+[Mito] Minos encierra tambien a Icaro en el Laberinto junto a su padre Dedalo.
+[Mito] Dedalo recoge Cera de Abejas en el Laberinto.
+[Mito] Dedalo recoge Plumas de Aves en el Laberinto.
+[Mito] Dedalo utiliza la Cera de Abejas y las Plumas de Aves para construir las Alas de Dedalo y las Alas de Icaro.
+[Capacidad] Dedalo adquiere la capacidad de Vuelo gracias a Alas de Dedalo
+[Capacidad] Icaro adquiere la capacidad de Vuelo gracias a Alas de Icaro
+[Mito] Dedalo escapa volando del Laberinto.
+[Mito] Dedalo entrega las Alas de Dedalo a Heracles.
+[Capacidad] Heracles adquiere la capacidad de Vuelo gracias a Alas de Dedalo
+[Mito] Heracles vuela y localiza a Medusa.
+[Mito] Icaro escapa volando del Laberinto junto a su padre.
+[Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.
+[Mito] Zeus ayuda a su hijo Heracles y le revela como localizar a las Grayas.
+[Mito] Heracles usa su invisibilidad para robar el Ojo de las Grayas.
+[Mito] Heracles devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
+[Mito] Las Ninfas entregan Zurron Magico a Heracles.
+[Mito] Heracles derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.
+[Capacidad] Heracles adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Heracles petrifica a Ceto.
+[Mito] Heracles obtiene Cabeza de Ceto tras vencer a Ceto.
+[Mito] Heracles libera a Andromeda.
+>>> [EXITO] Mision cumplida: Heracles ha logrado Liberar a Andromeda. <<<

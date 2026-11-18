@@ -11,6 +11,8 @@ Casiopea tiene el enfado de Poseidon
 
  *** Fin Descripción Escenario ***
 
+[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: rules
+[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: rules
 Mundo iniciado correctamente
 Insertado FAVOR: Perseo -> Atenea
 Insertado FAVOR: Perseo -> Hermes

@@ -68,3 +68,5 @@ Insertado FAVOR: Teseo -> Ariadna
 [Mito] Dedalo escapa volando del Laberinto.
 [Mito] Icaro escapa volando del Laberinto junto a su padre.
 [Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.
+>>> [EXITO] Mision cumplida: Teseo ha logrado Matar a Minotauro. <<<
+>>> [EXITO] Mision cumplida: Dedalo ha logrado Liberar a Dedalo. <<<

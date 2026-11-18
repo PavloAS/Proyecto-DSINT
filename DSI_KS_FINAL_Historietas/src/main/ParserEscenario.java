@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import org.kie.api.runtime.KieSession;
 
+import modelo.Mision;
 import modelo.TieneEnfadoDe;
 import modelo.TieneFavorDe;
 
@@ -28,7 +29,11 @@ public class ParserEscenario {
                     continue;
                 }
 
-                if (leyendoCondiciones) {
+                
+                if	(!leyendoCondiciones) {
+                	analizarPregunta(linea, kSession);
+                }
+                else {
                     analizarHecho(linea, kSession);
                 }
             }
@@ -37,6 +42,26 @@ public class ParserEscenario {
         }
     }
 
+    private void analizarPregunta(String pregunta, KieSession kSession) {
+    	String p = pregunta.replace("¿", "").replace("?", "").trim();
+    	
+    	if(p.contains("Perseo") && p.contains("liberar a Andromeda")) {
+    		kSession.insert(new Mision("Liberar a Andromeda", "Liberar", "Perseo", "Andromeda"));
+    	}
+    	else if (p.contains("Teseo") && p.contains("liberar a Andromeda")) {
+            kSession.insert(new Mision("Liberar a Andromeda", "Liberar", "Teseo", "Andromeda"));
+        } 
+    	else if (p.contains("Heracles") && p.contains("liberar a Andromeda")) {
+            kSession.insert(new Mision("Liberar a Andromeda", "Liberar", "Heracles", "Andromeda"));
+        }
+        if (p.contains("Teseo") && p.contains("matar al Minotauro")) {
+            kSession.insert(new Mision("Matar al Minotauro", "Matar", "Teseo", "Minotauro"));
+        }
+        if (p.contains("Dedalo") && p.contains("escapar")) {
+            kSession.insert(new Mision("Escapar del Laberinto", "Liberar", "Dedalo", "Dedalo"));
+        }
+    }
+    
     private void analizarHecho(String linea, KieSession kSession) {
         if (linea.contains(" tiene el favor de ")) {
             String[] partes = linea.split(" tiene el favor de ");

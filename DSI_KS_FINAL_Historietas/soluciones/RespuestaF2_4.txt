@@ -23,6 +23,7 @@ Insertado DESPOSESIÓN: Las Ninfas pierde Sandalias Aladas
 Insertado FAVOR: Teseo -> Ariadna
 
 *** Estado inicial ***
+[Inicializacion] Se ha retirado el objeto Sandalias Aladas de su dueño original por reglas del escenario.
 [Inicial] Perseo: vivo, libre
 [Inicial] Heracles: vivo, libre
 [Inicial] Zeus: vivo, libre
@@ -48,7 +49,7 @@ Insertado FAVOR: Teseo -> Ariadna
 [Inicial] Hoz de Acero - propietario: Hermes
 [Inicial] Casco de Hades - propietario: Hades
 [Inicial] Zurron Magico - propietario: Ninfas
-[Inicial] Sandalias Aladas - propietario: Ninfas
+[Inicial] Sandalias Aladas - propietario: Ninguno
 [Inicial] Ojo de las Grayas - propietario: Grayas
 [Inicial] Cabeza de Medusa - propietario: Medusa
 [Inicial] Cabeza de Ceto - propietario: Ceto
@@ -60,9 +61,7 @@ Insertado FAVOR: Teseo -> Ariadna
 [Inicial] Plumas de Aves - propietario: Laberinto
 
 *** Historia ***
-[Inicializacion] Se ha retirado el objeto Sandalias Aladas de su dueño original por reglas del escenario.
 [Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
-[Capacidad] Ninguno adquiere la capacidad de Vuelo gracias a Sandalias Aladas
 [Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
 [Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
 [Mito] Ceto apresa a Andromeda.
