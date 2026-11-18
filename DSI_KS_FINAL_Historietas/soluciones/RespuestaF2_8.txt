@@ -43,6 +43,7 @@ Insertado FAVOR: Heracles -> Dedalo
 [Inicial] Teseo: vivo, libre
 [Inicial] Minos: vivo, libre
 [Inicial] Ariadna: vivo, libre
+[Inicial] Atalanta: vivo, libre
 [Inicial] Dedalo: vivo, libre
 [Inicial] Icaro: vivo, libre
 [Inicial] Grayas: vivo, libre
@@ -68,6 +69,9 @@ Insertado FAVOR: Heracles -> Dedalo
 *** Historia ***
 [Capacidad] Hades adquiere la capacidad de Invisibilidad gracias a Casco de Hades
 [Capacidad] Medusa adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
+[Mito] Por el enfado de Minos, Danae es enviado al interior del Laberinto.
+[Mito] Danae entra al Laberinto sin el Hilo de Ariadna, se pierde y queda preso del Minotauro.
+[Mito] Zeus ayuda a su hijo Heracles y le revela como localizar a las Grayas.
 [Mito] Poseidon, enojado con Casiopea, libera al monstruo Ceto.
 [Mito] Ceto apresa a Andromeda.
 [Mito] Atenea otorga el Escudo de Bronce a Heracles.
@@ -75,8 +79,9 @@ Insertado FAVOR: Heracles -> Dedalo
 [Capacidad] Heracles adquiere la capacidad de Reflejo gracias a Escudo-Espejo
 [Mito] Hades entrega su Casco de Invisibilidad a Heracles.
 [Capacidad] Heracles adquiere la capacidad de Invisibilidad gracias a Casco de Hades
-[Mito] Por el enfado de Minos, Danae es enviado al interior del Laberinto.
-[Mito] Danae entra al Laberinto sin el Hilo de Ariadna, se pierde y queda preso del Minotauro.
+[Mito] Heracles usa su invisibilidad para robar el Ojo de las Grayas.
+[Mito] Heracles devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
+[Mito] Las Ninfas entregan Zurron Magico a Heracles.
 [Mito] Heracles usa su invisibilidad para robar el Hilo de Ariadna.
 [Mito] Heracles entra al Laberinto llevando consigo el Hilo de Ariadna.
 [Mito] Gracias al Hilo de Ariadna, Heracles se orienta en el Laberinto y localiza al Minotauro.
@@ -96,15 +101,12 @@ Insertado FAVOR: Heracles -> Dedalo
 [Mito] Dedalo entrega las Alas de Dedalo a Heracles.
 [Capacidad] Heracles adquiere la capacidad de Vuelo gracias a Alas de Dedalo
 [Mito] Heracles vuela y localiza a Medusa.
-[Mito] Icaro escapa volando del Laberinto junto a su padre.
-[Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.
-[Mito] Zeus ayuda a su hijo Heracles y le revela como localizar a las Grayas.
-[Mito] Heracles usa su invisibilidad para robar el Ojo de las Grayas.
-[Mito] Heracles devuelve el Ojo a las Grayas a cambio de saber como localizar a las Ninfas.
-[Mito] Las Ninfas entregan Zurron Magico a Heracles.
 [Mito] Heracles derrota a Medusa y guarda su cabeza en el Zurron Magico. Nace Pegaso.
 [Capacidad] Heracles adquiere la capacidad de Petrificacion gracias a Cabeza de Medusa
 [Mito] Heracles petrifica a Ceto.
 [Mito] Heracles obtiene Cabeza de Ceto tras vencer a Ceto.
 [Mito] Heracles libera a Andromeda.
+[Mito] Icaro escapa volando del Laberinto junto a su padre.
+[Mito] Icaro se acerca demasiado al sol, las Alas de Icaro se rompen y muere.
 >>> [EXITO] Mision cumplida: Heracles ha logrado Liberar a Andromeda. <<<
+[Trofeos] Heracles termina con las cabezas de Medusa, Minotauro y Ceto.

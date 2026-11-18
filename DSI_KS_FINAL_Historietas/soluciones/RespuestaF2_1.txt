@@ -11,8 +11,6 @@ Casiopea tiene el enfado de Poseidon
 
  *** Fin Descripción Escenario ***
 
-[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: rules
-[main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: rules
 Mundo iniciado correctamente
 Insertado FAVOR: Perseo -> Atenea
 Insertado FAVOR: Perseo -> Hermes
@@ -35,6 +33,7 @@ Insertado ENFADO: Casiopea -> Poseidon
 [Inicial] Teseo: vivo, libre
 [Inicial] Minos: vivo, libre
 [Inicial] Ariadna: vivo, libre
+[Inicial] Atalanta: vivo, libre
 [Inicial] Dedalo: vivo, libre
 [Inicial] Icaro: vivo, libre
 [Inicial] Grayas: vivo, libre

@@ -25,6 +25,7 @@ Insertado FAVOR: Teseo -> Ariadna
 [Inicial] Teseo: vivo, libre
 [Inicial] Minos: vivo, libre
 [Inicial] Ariadna: vivo, libre
+[Inicial] Atalanta: vivo, libre
 [Inicial] Dedalo: vivo, libre
 [Inicial] Icaro: vivo, libre
 [Inicial] Grayas: vivo, libre

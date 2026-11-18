@@ -42,6 +42,8 @@ rule "Inicializar hechos por defecto de los Mitos"
 		Humano ariadna = new Humano("Ariadna");
 		ariadna.setTienePadre("Minos");
 		insert(ariadna);
+		insert(new Humano("Atalanta"));
+		insert(new Heroe("Atalanta"));
 		
 		insert(new Humano("Dedalo"));
 		Humano icaro = new Humano("Icaro");
@@ -415,6 +417,7 @@ end
 
 rule "Minos envia al Laberinto a quien tiene su enfado"
     agenda-group "historia"
+    salience 30
     when
         TieneEnfadoDe($p : personaje != "Casiopea" && personaje != "Dedalo", ser == "Minos")
         Personaje(nombre == $p, estadoVida == "vivo", estadoLibertad == "libre")
@@ -427,6 +430,7 @@ end
 
 rule "Quien entra al Laberinto sin el Hilo de Ariadna queda preso del Minotauro"
     agenda-group "historia"
+    salience 30
     when
         Accion(tipo == "Entrar", $p : agenteAccion, pacienteAccion == "Laberinto")
         $ser : Personaje(nombre == $p, estadoVida == "vivo", estadoLibertad == "libre")
@@ -673,6 +677,7 @@ end
 	//Regla para el escenario 8
 rule "Zeus revela a su hijo como localizar a las Grayas"
 	agenda-group "historia"
+	salience 5
 	when
 		Heroe($h : nombre)
 		Personaje(nombre == $h, tienePadre == "Zeus", estadoVida == "vivo", estadoLibertad == "libre")
@@ -681,4 +686,49 @@ rule "Zeus revela a su hijo como localizar a las Grayas"
 	then
 		insert(new Accion("Localizar a las Grayas", "Localizar", $h, "Grayas"));
 		System.out.println("[Mito] Zeus ayuda a su hijo " + $h + " y le revela como localizar a las Grayas.");
+end
+
+rule "Los heroes entregan sus trofeos al salvador de Andromeda"
+    agenda-group "historia"
+when
+    Accion(tipo == "Liberar", $salvador : agenteAccion,
+           pacienteAccion == "Andromeda")
+    Heroe(nombre == $salvador)
+    Personaje(nombre == $salvador, estadoVida == "vivo",
+              estadoLibertad == "libre")
+
+    Heroe($donante : nombre != $salvador)
+    Personaje(nombre == $donante, estadoVida == "vivo",
+              estadoLibertad == "libre")
+    Accion(tipo == "Localizar", agenteAccion == $donante,
+           pacienteAccion == "Grayas")
+
+    $trofeo : Trofeo($nombre : nombre, perteneceASer == $donante)
+then
+    modify($trofeo) { setPerteneceASer($salvador) };
+    System.out.println("[Mito] " + $donante + " entrega " + $nombre
+        + " a " + $salvador
+        + " como reconocimiento por salvar a Andromeda.");
+end
+
+rule "Un heroe reune las tres cabezas"
+    agenda-group "historia"
+    salience -20
+when
+    Heroe($h : nombre)
+    Personaje(nombre == $h, estadoVida == "vivo",
+              estadoLibertad == "libre")
+    Accion(tipo == "Liberar", pacienteAccion == "Andromeda")
+
+    Trofeo(nombre == "Cabeza de Medusa", perteneceASer == $h)
+    Trofeo(nombre == "Cabeza del Minotauro", perteneceASer == $h)
+    Trofeo(nombre == "Cabeza de Ceto", perteneceASer == $h)
+
+    not Accion(tipo == "Reunir", agenteAccion == $h,
+               pacienteAccion == "Tres cabezas")
+then
+    insert(new Accion("Reunir las tres cabezas",
+                      "Reunir", $h, "Tres cabezas"));
+    System.out.println("[Trofeos] " + $h
+        + " termina con las cabezas de Medusa, Minotauro y Ceto.");
 end

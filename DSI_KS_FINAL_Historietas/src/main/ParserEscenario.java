@@ -45,6 +45,11 @@ public class ParserEscenario {
     private void analizarPregunta(String pregunta, KieSession kSession) {
     	String p = pregunta.replace("¿", "").replace("?", "").trim();
     	
+    	if (p.equals("Puede Atalanta liberar a Teseo")) {
+    	    kSession.insert(new Mision(
+    	        "Liberar a Teseo", "Liberar", "Atalanta", "Teseo"));
+    	}
+    	
     	if(p.contains("Perseo") && p.contains("liberar a Andromeda")) {
     		kSession.insert(new Mision("Liberar a Andromeda", "Liberar", "Perseo", "Andromeda"));
     	}
