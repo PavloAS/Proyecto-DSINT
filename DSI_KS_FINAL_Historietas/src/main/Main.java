@@ -25,7 +25,9 @@ public class Main {
         
         PrintStream consola = System.out;
         PrintStream consolaErrores = System.err;
-
+        
+        new File(soluciones).mkdirs();
+        
         for (int i = 1; i <= 8; i++) {
             String rutaEntrada = escenarios + "/Escenario.F2-" + i + ".txt";
             String rutaSalida = soluciones + "/RespuestaF2_" + i + ".txt";
@@ -53,9 +55,9 @@ public class Main {
                 System.setErr(dobleSalida); // Usamos esto para ver los fallos de Drools
 
                 // El enunciado irá directo al .txt
-                System.out.println("\n *** Descripción Escenario F2-" + i + " ***\n");
+                System.out.println("\n *** Descripcion Escenario F2-" + i + " ***\n");
                 Files.lines(ficheroEntrada.toPath(), StandardCharsets.UTF_8).forEach(System.out::println);
-                System.out.println("\n *** Fin Descripción Escenario ***\n");
+                System.out.println("\n *** Fin Descripcion Escenario ***\n");
 
                 // Crear sesión y ejecutar
                 KieSession kSession = kContainer.newKieSession("ksession-rules-dsi");

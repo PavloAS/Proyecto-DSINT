@@ -147,7 +147,7 @@ rule "Procesar condiciones iniciales de desposesion"
     then
         modify($objeto) { setPerteneceASer("Ninguno") };
         delete($desposesion);
-        System.out.println("[Inicializacion] Se ha retirado el objeto " + $nombreObjeto + " de su dueño original por reglas del escenario.");
+        System.out.println("[Inicializacion] Se ha retirado el objeto " + $nombreObjeto + " de su dueno original por reglas del escenario.");
 end
 rule "Inferir capacidad por posesion de objeto"
 	agenda-group "historia"

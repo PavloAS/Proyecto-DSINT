@@ -75,8 +75,8 @@ public class ParserEscenario {
             kSession.insert(new TieneFavorDe(personaje, dios));
             System.out.println("Insertado FAVOR: " + personaje + " -> " + dios);
 
-        } else if (linea.contains(" tiene el enfado de ")) {
-            String[] partes = linea.split(" tiene el enfado de ");
+        } else if (linea.contains(" tiene el enfado de ") || linea.contains(" tiene el enojo de ")) {
+            String[] partes = linea.split(" tiene el (enfado|enojo) de ");
             String personaje = partes[0].trim();
             String dios = partes[1].trim();
             kSession.insert(new TieneEnfadoDe(personaje, dios));
@@ -87,7 +87,7 @@ public class ParserEscenario {
             String personaje = partes[0].trim();
             String objeto = partes[1].trim();
             kSession.insert("DESPOSEER_" + objeto);
-            System.out.println("Insertado DESPOSESIÓN: " + personaje + " pierde " + objeto);
+            System.out.println("Insertado DESPOSESION: " + personaje + " pierde " + objeto);
         }
     }
 }
